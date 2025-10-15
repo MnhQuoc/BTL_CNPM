@@ -1,44 +1,73 @@
 import './App.css';
 import React from 'react';
-import { Route, Routes, Navigate } from 'react-router';
-import NavbarWeb from './components/Navigate/NavbarWeb';
+import { Route, Routes } from 'react-router';
+import LayoutWithNavbar from "./components/LayoutWithNavbar/LayoutWithNavbar";
+
 import Header from './pages/Home/Header';
-import About from './pages/About/About';
+import About from './pages/RecommendFood/About';
 import Team from './pages/Team/Team';
-import Footer from './components/Footer/Footer';
 import Profile from './pages/Profile/Profile';
 import Users from './pages/Users/Users';
 import Intro from './pages/Intro/Intro';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
-import MerchantList from './pages/MerchantList/MerchantList.jsx';
+import TutorList from './pages/TutorList/TutorList.jsx';
 import ChangeInfo from './pages/ChangeInfo/ChangeInfo.jsx';
+import OrderList from './pages/TutorList/OrderList.jsx';
+import OrderDetail from './pages/TutorList/OrderDetail.jsx';
 import Verify from './pages/Verify/Verify.jsx';
-import MidPromotions from './pages/MidPromotions/MidPromotions.jsx';
-import OrderList from './pages/Orders/OrderList.jsx';
-import OrderDetail from './pages/Orders/OrderDetail.jsx';
-// Define an ErrorBoundary class to handle any potential errors in the app
+// import ExploreSection from './pages/Content/ExploreSection';
+import AddFoodItem from './components/Addfood/AddFoodItem.jsx';
+import ListFood from './components/Listfood/ListFood.jsx';
+import FoodEdit from './components/Editfood/EditFood.jsx';
+import MainContent from './pages/Content/MainContent.jsx';
+import Menu from './components/Navigate/Menu.jsx';
+import FoodDetail from './pages/FoodDetail/FoodDetail.jsx'; 
+import Checkout from './pages/Checkout/Checkout';
+import { CartProvider } from './contexts/CartContext';
+import Cart from './pages/Cart/Cart';
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, error: null, errorInfo: null };
   }
-
   static getDerivedStateFromError(error) {
     return { hasError: true };
   }
-
   componentDidCatch(error, errorInfo) {
     console.log('Error:', error);
     console.log('Error Info:', errorInfo);
+    // Store details so we can render them in development for debugging
+    this.setState({ error, errorInfo });
   }
-
   render() {
     if (this.state.hasError) {
-      return <h1>Something went wrong.</h1>;
+      // In production show a friendly message. In development show details to help debugging.
+      if (process.env.NODE_ENV !== 'production') {
+        return (
+          <div style={{ padding: 20 }}>
+            <h1>Đã xảy ra lỗi. Vui lòng thử lại sau.</h1>
+            {this.state.error && (
+              <div style={{ marginTop: 12 }}>
+                <strong>Error:</strong>
+                <pre style={{ whiteSpace: 'pre-wrap', background: '#f7f7f7', padding: 8 }}>{String(this.state.error)}</pre>
+              </div>
+            )}
+            {this.state.errorInfo && this.state.errorInfo.componentStack && (
+              <div style={{ marginTop: 12 }}>
+                <strong>Component stack:</strong>
+                <pre style={{ whiteSpace: 'pre-wrap', background: '#f7f7f7', padding: 8 }}>{this.state.errorInfo.componentStack}</pre>
+              </div>
+            )}
+            <div style={{ marginTop: 12 }}>
+              <button className="btn btn-primary" onClick={() => window.location.reload()}>Reload</button>
+            </div>
+          </div>
+        );
+      }
+      return <h1>Đã xảy ra lỗi. Vui lòng thử lại sau.</h1>;
     }
-
     return this.props.children;
   }
 }
@@ -49,42 +78,41 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <div className="App">
-        <NavbarWeb isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <CartProvider>
         <Routes>
-          {/* Page Intro will be shown first */}
+          {/* Trang intro riêng, không có navbar/footer */}
           <Route path="/" element={<Intro />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/menu" element={<h1>Menu</h1>} />
-          <Route
-            path="/login"
-            element={<Login setIsLoggedIn={setIsLoggedIn} />}
-          />
-          <Route path="/register" element={<Register />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/listmerchant" element={<MerchantList />} />
-          <Route path="/changeinfo" element={<ChangeInfo />} />
-          <Route path="/verify/:userId" element={<Verify />} />
-          <Route path="/midpromotions" element={<MidPromotions />} />
-          <Route path="/orderlist" element={<OrderList />} />
-          <Route path="/orderdetail" element={<OrderDetail />} />
-
-          {/* Main page */}
-          <Route
-            path="/home"
-            element={
-              <>
-                <Header />
-                <About />
-
-                <Team />
-              </>
-            }
-          />
+          {/* Layout có Navbar/Footer */}
+          <Route path="/" element={<LayoutWithNavbar />}>
+            <Route path="home" element={
+              <div className="home-banner-wrapper">
+                <div className="home-content">
+                  <Header />
+                  <About />
+                </div>
+              </div>
+            } />
+            <Route path="profile" element={<Profile />} />
+            <Route path="users" element={<Users />} />
+            <Route path="menu" element={<Menu />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="signup" element={<Signup />} />
+            <Route path="listtutor" element={<TutorList />} />
+            <Route path="changeinfo" element={<ChangeInfo />} />
+            <Route path="orderlist" element={<OrderList />} />
+            <Route path="orderdetail/:orderId" element={<OrderDetail />} />
+            <Route path="verify/:userId" element={<Verify />} />
+            <Route path="addfood" element={<AddFoodItem />} />
+            <Route path="listfood" element={<ListFood />} />
+            <Route path="editfood/:id" element={<FoodEdit />} />
+            <Route path="main-content" element={<MainContent />} />
+            <Route path="/courses/:id" element={<FoodDetail />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<Checkout />} />
+          </Route>
         </Routes>
-        <Footer />
-      </div>
+      </CartProvider>
     </ErrorBoundary>
   );
 }

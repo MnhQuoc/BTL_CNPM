@@ -45,7 +45,7 @@ const Profile = () => {
             setMessage('Vui lòng cập nhật thông tin');
           }
         } else {
-          setMessage('Không thể tải thông tin người dùng');
+          setMessage('Vui lòng cập nhật thông tin');
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -122,8 +122,7 @@ const Profile = () => {
                     className="form-control"
                     name="name"
                     value={userData.name}
-                    onChange={handleChange}
-                    required
+                   readOnly
                   />
                 </div>
 
@@ -134,8 +133,7 @@ const Profile = () => {
                     className="form-control"
                     name="email"
                     value={userData.email}
-                    onChange={handleChange}
-                    required
+                  readOnly
                   />
                 </div>
 
@@ -146,8 +144,7 @@ const Profile = () => {
                     className="form-control"
                     name="phone"
                     value={userData.phone}
-                    onChange={handleChange}
-                    required
+                  readOnly
                   />
                 </div>
 
@@ -158,8 +155,7 @@ const Profile = () => {
                     className="form-control"
                     name="address"
                     value={userData.address}
-                    onChange={handleChange}
-                    required
+                    readOnly
                   />
                 </div>
 
@@ -176,7 +172,7 @@ const Profile = () => {
                     className="btn btn-success flex-grow-1 mx-2"
                     onClick={() => navigate('/signup')}
                   >
-                    Trở thành Merchant
+                    Trở thành Tutor
                   </button>
                 </div>
               </form>

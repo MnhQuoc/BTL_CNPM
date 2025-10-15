@@ -53,6 +53,7 @@ function Login({ setIsLoggedIn }) {
       setMessage('Vui lòng sửa lỗi trước khi gửi');
       return;
     }
+    setLoading(true); // Bắt đầu trạng thái loading
 
     setLoading(true); // Bắt đầu trạng thái loading
 
@@ -85,8 +86,16 @@ function Login({ setIsLoggedIn }) {
           password: '',
         });
 
+<<<<<<< HEAD
         setIsLoggedIn(true); // Đặt trạng thái đăng nhập thành công
         navigate('/home');
+=======
+        // Chuyển hướng đến trang chủ sau 1 giây
+        setTimeout(() => {
+          navigate('/home');  
+          window.location.reload(); // Thêm dòng này để reload trang       
+        }, 1000);
+>>>>>>> last_update
       } else {
         setMessage('Tên đăng nhập hoặc mật khẩu không đúng');
       }
@@ -96,6 +105,10 @@ function Login({ setIsLoggedIn }) {
     } finally {
       setLoading(false); // Kết thúc trạng thái loading
     }
+    finally {
+      setLoading(false); // Kết thúc trạng thái loading
+    }
+    
   };
 
   return (
@@ -104,6 +117,7 @@ function Login({ setIsLoggedIn }) {
       style={{ maxWidth: '400px', margin: 'auto', padding: '20px' }}
     >
       <h2 className="text-center">Đăng nhập</h2>
+<<<<<<< HEAD
 
       {message && (
         <div
@@ -114,6 +128,10 @@ function Login({ setIsLoggedIn }) {
           {message}
         </div>
       )}
+=======
+      {message && <div className={`alert ${message.includes('thành công') ? 'alert-success' : 'alert-danger'} mt-3`}>{message}</div>}
+
+>>>>>>> last_update
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Tên đăng nhập:</label>
@@ -126,10 +144,17 @@ function Login({ setIsLoggedIn }) {
             placeholder="Nhập tên đăng nhập của bạn"
             required
           />
+<<<<<<< HEAD
           {errors.username && <p className="text-danger">{errors.username}</p>}
         </div>
         <div className="form-group">
           <label>Mật khẩu:</label>
+=======
+           {errors.username && <p className="text-danger">{errors.username}</p>}
+        </div>
+        <div className="form-group">
+          <label >Mật khẩu:</label>
+>>>>>>> last_update
           <input
             type="password"
             name="password"
@@ -143,7 +168,11 @@ function Login({ setIsLoggedIn }) {
         </div>
         <button
           type="submit"
+<<<<<<< HEAD
           className="btn btn-primary btn-block"
+=======
+          className="btn pill-btn w-100"
+>>>>>>> last_update
           disabled={loading}
         >
           {loading ? (
@@ -160,7 +189,11 @@ function Login({ setIsLoggedIn }) {
           )}
         </button>
       </form>
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> last_update
       <div className="mt-4 text-center">
         <span>Bạn chưa có tài khoản?</span>
         <button
