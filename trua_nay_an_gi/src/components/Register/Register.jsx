@@ -249,7 +249,7 @@ function Register() {
 
           <button
             type="submit"
-            className="btn btn-primary w-100"
+            className=" btn pill-btn w-100"
             style={{ padding: '15px' }}
             disabled={loading}
           >

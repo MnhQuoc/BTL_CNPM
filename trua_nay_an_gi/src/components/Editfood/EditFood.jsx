@@ -14,7 +14,7 @@ const FoodEdit = () => {
   useEffect(() => {
     const fetchFood = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/foods/${id}`);
+        const res = await axios.get(`http://localhost:3001/courses/${id}`);
         setFood({
           ...res.data,
           tag: res.data.tag?.join(', '),
@@ -73,7 +73,7 @@ const FoodEdit = () => {
         tag: food.tag.split(',').map(t => t.trim()),
       };
 
-      await axios.put(`http://localhost:3001/foods/${id}`, updatedFood);
+      await axios.put(`http://localhost:3001/courses/${id}`, updatedFood);
       setMessage(<><FaCheckCircle className="me-2" /> Cập nhật thành công!</>);
       setIsSuccess(true);
       setTimeout(() => navigate('/listfood'), 1500);

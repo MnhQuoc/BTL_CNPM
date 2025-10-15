@@ -172,7 +172,7 @@ const Profile = () => {
                     className="btn btn-success flex-grow-1 mx-2"
                     onClick={() => navigate('/signup')}
                   >
-                    Trở thành Merchant
+                    Trở thành Tutor
                   </button>
                 </div>
               </form>

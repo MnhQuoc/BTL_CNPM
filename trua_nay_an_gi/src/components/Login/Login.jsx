@@ -134,7 +134,7 @@ function Login() {
         </div>
         <button
           type="submit"
-          className="btn btn-primary btn-block"
+          className="btn pill-btn w-100"
           disabled={loading}
         >
           {loading ? (

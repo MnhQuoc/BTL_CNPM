@@ -59,7 +59,7 @@
       "email": "albumanh1234@gmail.com",
       "phone": "02149293486",
       "password": "user1234",
-      "role": "merchant",
+      "role": "tutor",
       "blocked": false,
       "verified": true,
       "restname": "Quán Anh Béo 22",
@@ -85,7 +85,7 @@
       "email": "albumanh1234@gmail.com",
       "phone": "0182381238",
       "password": "user1234",
-      "role": "merchant",
+      "role": "tutor",
       "blocked": false,
       "verified": true,
       "name": "Tuấn",
@@ -106,56 +106,65 @@
       "role": "user",
       "blocked": false,
       "verified": true
+    },
+    {
+      "id": 1760514427208,
+      "username": "4545454545",
+      "password": "quoc851032",
+      "phone": "0123456781",
+      "email": "aaa@gmail.com",
+      "role": "user",
+      "blocked": false,
+      "verified": false
     }
-   
   ],
   "request": [
     {
       "userId": 1745348611792,
       "status": "rejected",
-      "role": "merchant",
+      "role": "tutor",
       "verified": false,
       "id": "1"
     },
     {
       "userId": 1745348611792,
       "status": "rejected",
-      "role": "merchant",
+      "role": "tutor",
       "verified": false,
       "id": "2"
     },
     {
       "userId": 1745348611792,
       "status": "approved",
-      "role": "merchant",
+      "role": "tutor",
       "verified": false,
       "id": "3"
     },
     {
       "userId": 1745348611792,
       "status": "rejected",
-      "role": "merchant",
+      "role": "tutor",
       "verified": false,
       "id": "4"
     },
     {
       "userId": 1745349964177,
       "status": "rejected",
-      "role": "merchant",
+      "role": "tutor",
       "verified": false,
       "id": "5"
     },
     {
       "userId": 1745349964177,
       "status": "rejected",
-      "role": "merchant",
+      "role": "tutor",
       "verified": false,
       "id": "6"
     },
     {
       "userId": 1745421209258,
       "status": "approved",
-      "role": "merchant",
+      "role": "tutor",
       "verified": false,
       "id": "7"
     },
@@ -163,7 +172,7 @@
       "id": "36a0",
       "userId": "1746879405498",
       "status": "approved",
-      "role": "merchant",
+      "role": "tutor",
       "verified": false
     }
   ],
@@ -172,7 +181,7 @@
       "id": "1",
       "userId": "1745293587693",
       "username": "nhanhnhen",
-      "merchantId": "1745421209258",
+      "tutorId": "1745421209258",
       "items": [
         {
           "foodId": "2",
@@ -191,7 +200,7 @@
       "id": "2",
       "userId": "1745293587693",
       "username": "nhanhnhen",
-      "merchantId": "1745348611792",
+      "tutorId": "1745348611792",
       "items": [
         {
           "foodId": "2",
@@ -210,7 +219,7 @@
       "id": "3",
       "userId": "1745293587693",
       "username": "nhanhnhen",
-      "merchantId": "1745348611792",
+      "tutorId": "1745348611792",
       "items": [
         {
           "foodId": "2",
@@ -229,7 +238,7 @@
       "id": "4",
       "userId": "1745293587693",
       "username": "nhanhnhen",
-      "merchantId": "1745348611792",
+      "tutorId": "1745348611792",
       "items": [
         {
           "foodId": "2",
@@ -248,7 +257,7 @@
       "id": "5",
       "userId": "1745293587693",
       "username": "nhanhnhen",
-      "merchantId": "1745421209258",
+      "tutorId": "1745421209258",
       "items": [
         {
           "foodId": "1",
@@ -267,7 +276,7 @@
       "id": "6",
       "userId": "1745293587693",
       "username": "nhanhnhen",
-      "merchantId": "1745348611792",
+      "tutorId": "1745348611792",
       "items": [
         {
           "foodId": "1",
@@ -286,7 +295,7 @@
       "id": "7",
       "userId": "1745293587693",
       "username": "nhanhnhen",
-      "merchantId": "1745348611792",
+      "tutorId": "1745348611792",
       "items": [
         {
           "foodId": "2",
@@ -305,7 +314,7 @@
       "id": "8",
       "userId": "1745293587693",
       "username": "nhanhnhen",
-      "merchantId": "1745348611792",
+      "tutorId": "1745348611792",
       "items": [
         {
           "foodId": "1",
@@ -324,7 +333,7 @@
       "id": "9",
       "userId": "1745293587693",
       "username": "nhanhnhen",
-      "merchantId": "1745348611792",
+      "tutorId": "1745348611792",
       "items": [
         {
           "foodId": "2",
@@ -343,7 +352,7 @@
       "id": "10",
       "userId": "1745293587693",
       "username": "nhanhnhen",
-      "merchantId": "1745421209258",
+      "tutorId": "1745421209258",
       "items": [
         {
           "foodId": "2",
@@ -383,12 +392,41 @@
       "createdAt": "2025-05-10T12:19:14.717Z"
     }
   ],
-  "foods": [
+  "testimonials": [
+    {
+      "id": 1,
+      "title": "Excellent Teacher!",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum",
+      "name": "Mike Fisher",
+      "semester": "HK223",
+      "avatar": "ảnh",
+      "rating": 4
+    },
+    {
+      "id": 2,
+      "title": "Best Video Tutorial!",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum",
+      "name": "Jean Stanley",
+      "semester": "HK232",
+      "avatar": "ảnh",
+      "rating": 5
+    },
+    {
+      "id": 3,
+      "title": "Easy to Understand!",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum",
+      "name": "Katie Rose",
+      "semester": "HK241",
+      "avatar": "ảnh",
+      "rating": 4
+    }
+  ],
+  "courses": [
     {
       "id": "1",
-      "name": "Bánh mì thịt nguội",
+      "name": "Công nghệ phần mềm",
+      "image": "images/courses/1.png",
       "price": 25000,
-      "image": "https://tse4.mm.bing.net/th?id=OIP.t47v8dgxjhC1uFaYe4cSjAHaHa&w=474&h=474&c=7",
       "category": "bánh mì",
       "rating": 4.8,
       "location": "TP. Hồ Chí Minh",
@@ -401,17 +439,15 @@
       "note": "",
       "discountPrice": 0,
       "serviceFee": 0,
-      "tag": [
-        "1234567"
-      ],
-      "merchantId": "1745348611792",
+      "tag": ["1234567"],
+      "tutorId": "1745348611792",
       "restname": "Quán Anh Béo 22"
     },
     {
       "id": "2",
-      "name": "Bánh mì pate trứng",
+      "name": "Mạng máy tính",
+      "image": "images/courses/2.png",
       "price": 20000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.IxSQxenayDYM2oZcHwj7PgHaEo&w=296&h=296&c=7",
       "category": "bánh mì",
       "rating": 4.7,
       "location": "Cần Thơ",
@@ -424,17 +460,15 @@
       "note": "",
       "discountPrice": 0,
       "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745421209258",
+      "tag": [1234567],
+      "tutorId": "1745421209258",
       "restname": "Ngõ Nhỏ Quán 2"
     },
     {
       "id": "3",
-      "name": "Bánh mì bò nướng",
+      "name": "Hệ cơ sở dữ liệu",
+      "image": "images/courses/3.png",
       "price": 30000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.IxSQxenayDYM2oZcHwj7PgHaEo&w=296&h=296&c=7",
       "category": "bánh mì",
       "rating": 4.9,
       "location": "Đà Nẵng",
@@ -447,17 +481,15 @@
       "note": "",
       "discountPrice": 0,
       "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745348611792",
+      "tag": [1234567],
+      "tutorId": "1745348611792",
       "restname": "Quán Anh Béo 22"
     },
     {
       "id": "4",
-      "name": "Phở bò tái nạm",
+      "name": "Hóa đại cương",
+      "image": "images/courses/4.png",
       "price": 60000,
-      "image": "https://tse2.mm.bing.net/th?id=OIP.j8okE_ECVYln8KGKRlTeMgHaE8&cb=iwp1&w=316&h=316&c=7",
       "category": "phở",
       "rating": 5,
       "location": "Hà Nội",
@@ -470,17 +502,15 @@
       "note": "",
       "discountPrice": 0,
       "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745421209258",
+      "tag": [1234567],
+      "tutorId": "1745421209258",
       "restname": "Ngõ Nhỏ Quán 2"
     },
     {
       "id": "5",
-      "name": "Phở gà",
+      "name": "Chủ nghĩa Mác-Lênin",
+      "image": "images/courses/5.png",
       "price": 50000,
-      "image": "https://tse2.mm.bing.net/th?id=OIP.j8okE_ECVYln8KGKRlTeMgHaE8&cb=iwp1&w=316&h=316&c=7",
       "category": "phở",
       "rating": 4.6,
       "location": "Hà Nội",
@@ -493,17 +523,15 @@
       "note": "",
       "discountPrice": 0,
       "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745348611792",
+      "tag": [1234567],
+      "tutorId": "1745348611792",
       "restname": "Quán Anh Béo 22"
     },
     {
       "id": "6",
-      "name": "Phở bò viên",
+      "name": "Cấu trúc dữ liệu và giải thuật",
+      "image": "images/courses/6.png",
       "price": 55000,
-      "image": "https://tse2.mm.bing.net/th?id=OIP.j8okE_ECVYln8KGKRlTeMgHaE8&cb=iwp1&w=316&h=316&c=7",
       "category": "phở",
       "rating": 4.5,
       "location": "TP. Hồ Chí Minh",
@@ -516,17 +544,15 @@
       "note": "",
       "discountPrice": 0,
       "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745421209258",
+      "tag": [1234567],
+      "tutorId": "1745421209258",
       "restname": "Ngõ Nhỏ Quán 2"
     },
     {
       "id": "7",
-      "name": "Cơm tấm sườn bì chả",
+      "name": "Xấc suất thống kê",
+      "image": "images/courses/7.png",
       "price": 50000,
-      "image": "https://tse3.mm.bing.net/th?id=OIP.s0yJBLAIl1OsoYH6ZXyJ3gHaFy&w=370&h=370&c=7",
       "category": "cơm",
       "rating": 5,
       "location": "TP. Hồ Chí Minh",
@@ -539,17 +565,15 @@
       "note": "",
       "discountPrice": 0,
       "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745348611792",
+      "tag": [1234567],
+      "tutorId": "1745348611792",
       "restname": "Quán Anh Béo 22"
     },
     {
       "id": "8",
-      "name": "Cơm chiên Dương Châu",
+      "name": "Giải tích",
+      "image": "images/courses/8.png",
       "price": 45000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.J6uA2efmD5pE-PmL1hySRAHaE8&w=316&h=316&c=7",
       "category": "cơm",
       "rating": 4.7,
       "location": "Bình Dương",
@@ -562,17 +586,15 @@
       "note": "",
       "discountPrice": 0,
       "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745421209258",
+      "tag": [1234567],
+      "tutorId": "1745421209258",
       "restname": "Ngõ Nhỏ Quán 2"
     },
     {
       "id": "9",
-      "name": "Cơm gà xối mỡ",
+      "name": "Cấu trúc rời rạc",
+      "image": "images/courses/9.png",
       "price": 48000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.DPlAJBRciXLa02HvnGDFrgHaFS&w=338&h=338&c=7",
       "category": "cơm",
       "rating": 4.8,
       "location": "Long An",
@@ -585,17 +607,15 @@
       "note": "",
       "discountPrice": 0,
       "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745348611792",
+      "tag": [1234567],
+      "tutorId": "1745348611792",
       "restname": "Quán Anh Béo 22"
     },
     {
       "id": "10",
-      "name": "Cơm cá kho tộ",
+      "name": "Vật lý đại cương",
+      "image": "images/courses/10.png",
       "price": 52000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.J6uA2efmD5pE-PmL1hySRAHaE8&w=316&h=316&c=7",
       "category": "cơm",
       "rating": 4.9,
       "location": "Cà Mau",
@@ -608,271 +628,9 @@
       "note": "",
       "discountPrice": 0,
       "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745421209258",
+      "tag": [1234567],
+      "tutorId": "1745421209258",
       "restname": "Ngõ Nhỏ Quán 2"
-    },
-    {
-      "id": "11",
-      "name": "Cơm cá kho tộ",
-      "price": 55000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.J6uA2efmD5pE-PmL1hySRAHaE8&w=316&h=316&c=7",
-      "category": "bún",
-      "rating": 4.9,
-      "location": "Hà Nội",
-      "address": "12 Hàng Mành",
-      "phone": "0911000001",
-      "openTime": "10:00 - 20:00",
-      "status": "OPEN",
-      "description": "Bún chả Hà Nội với thịt nướng thơm lừng, nước mắm pha chuẩn vị.",
-      "prepareTime": 10,
-      "note": "",
-      "discountPrice": 0,
-      "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745348611792",
-      "restname": "Quán Anh Béo 22"
-    },
-    {
-      "id": "12",
-      "name": "Cơm gà xối mỡ",
-      "price": 40000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.DPlAJBRciXLa02HvnGDFrgHaFS&w=338&h=338&c=7",
-      "category": "bánh",
-      "rating": 4.7,
-      "location": "Hải Phòng",
-      "address": "99 Lạch Tray",
-      "phone": "0911000002",
-      "openTime": "6:00 - 11:00",
-      "status": "OPEN",
-      "description": "Bánh cuốn mỏng mịn, nhân thịt nấm, ăn kèm chả quế và nước mắm chua ngọt.",
-      "prepareTime": 10,
-      "note": "",
-      "discountPrice": 0,
-      "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745421209258",
-      "restname": "Ngõ Nhỏ Quán 2"
-    },
-    {
-      "id": "13",
-      "name": "Bánh mì thịt nguội",
-      "price": 45000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.IxSQxenayDYM2oZcHwj7PgHaEo&w=296&h=296&c=7",
-      "category": "bánh",
-      "rating": 4.6,
-      "location": "Đà Nẵng",
-      "address": "21 Nguyễn Văn Linh",
-      "phone": "0911000003",
-      "openTime": "14:00 - 21:00",
-      "status": "OPEN",
-      "description": "Bánh xèo giòn rụm, tôm thịt đầy đặn, ăn kèm rau sống và nước chấm đặc biệt.",
-      "prepareTime": 10,
-      "note": "",
-      "discountPrice": 0,
-      "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745348611792",
-      "restname": "Quán Anh Béo 22"
-    },
-    {
-      "id": "14",
-      "name": "Bánh mì thịt nguội",
-      "price": 30000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.IxSQxenayDYM2oZcHwj7PgHaEo&w=296&h=296&c=7",
-      "category": "gỏi",
-      "rating": 4.8,
-      "location": "TP. Hồ Chí Minh",
-      "address": "15 Pasteur, Q.3",
-      "phone": "0911000004",
-      "openTime": "10:00 - 19:00",
-      "status": "OPEN",
-      "description": "Gỏi cuốn tươi mát, tôm thịt cuộn rau sống, chấm mắm nêm thơm ngon.",
-      "prepareTime": 10,
-      "note": "",
-      "discountPrice": 0,
-      "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745421209258",
-      "restname": "Ngõ Nhỏ Quán 2"
-    },
-    {
-      "id": "15",
-      "name": "Bánh mì thịt nguội",
-      "price": 60000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.IxSQxenayDYM2oZcHwj7PgHaEo&w=296&h=296&c=7",
-      "category": "hủ tiếu",
-      "rating": 4.9,
-      "location": "TP. Hồ Chí Minh",
-      "address": "38 Lý Tự Trọng, Q.1",
-      "phone": "0911000005",
-      "openTime": "6:00 - 14:00",
-      "status": "OPEN",
-      "description": "Hủ tiếu Nam Vang nước trong, topping đầy đủ, sợi dai vừa ăn.",
-      "prepareTime": 10,
-      "note": "",
-      "discountPrice": 0,
-      "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745348611792",
-      "restname": "Quán Anh Béo 22"
-    },
-    {
-      "id": "16",
-      "name": "Phở bò viên",
-      "price": 45000,
-      "image": "https://tse2.mm.bing.net/th?id=OIP.j8okE_ECVYln8KGKRlTeMgHaE8&cb=iwp1&w=316&h=316&c=7",
-      "category": "cháo",
-      "rating": 4.5,
-      "location": "Vĩnh Long",
-      "address": "Khu phố 1, Long Hồ",
-      "phone": "0911000006",
-      "openTime": "5:00 - 10:00",
-      "status": "OPEN",
-      "description": "Cháo lòng đậm đà, lòng sạch sẽ, ăn kèm rau thơm và quẩy giòn.",
-      "prepareTime": 10,
-      "note": "",
-      "discountPrice": 0,
-      "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745421209258",
-      "restname": "Ngõ Nhỏ Quán 2"
-    },
-    {
-      "id": "17",
-      "name": "Phở bò viên",
-      "price": 35000,
-      "image": "https://tse2.mm.bing.net/th?id=OIP.j8okE_ECVYln8KGKRlTeMgHaE8&cb=iwp1&w=316&h=316&c=7",
-      "category": "bánh",
-      "rating": 4.7,
-      "location": "Huế",
-      "address": "23 Lê Lợi",
-      "phone": "0911000007",
-      "openTime": "9:00 - 18:00",
-      "status": "OPEN",
-      "description": "Bánh bèo thơm béo, tôm cháy bùi, mắm ngọt chuẩn vị Huế.",
-      "prepareTime": 10,
-      "note": "",
-      "discountPrice": 0,
-      "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745348611792",
-      "restname": "Quán Anh Béo 22"
-    },
-    {
-      "id": "18",
-      "name": "Bánh mì thịt nguội",
-      "price": 55000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.IxSQxenayDYM2oZcHwj7PgHaEo&w=296&h=296&c=7",
-      "category": "bún",
-      "rating": 4.8,
-      "location": "Huế",
-      "address": "18 Nguyễn Huệ",
-      "phone": "0911000008",
-      "openTime": "6:00 - 13:00",
-      "status": "OPEN",
-      "description": "Bún bò Huế cay nồng, thịt bò mềm, nước lèo đậm đà đặc trưng.",
-      "prepareTime": 10,
-      "note": "",
-      "discountPrice": 0,
-      "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745421209258",
-      "restname": "Ngõ Nhỏ Quán 2"
-    },
-    {
-      "id": "19",
-      "name": "Bánh mì thịt nguội",
-      "price": 50000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.IxSQxenayDYM2oZcHwj7PgHaEo&w=296&h=296&c=7",
-      "category": "mì",
-      "rating": 4.7,
-      "location": "Quảng Nam",
-      "address": "55 Phan Chu Trinh",
-      "phone": "0911000009",
-      "openTime": "7:00 - 14:00",
-      "status": "OPEN",
-      "description": "Mì Quảng trứng thịt đầy đủ, sợi mì vàng óng, nước lèo sánh đậm.",
-      "prepareTime": 10,
-      "note": "",
-      "discountPrice": 0,
-      "serviceFee": 0,
-      "tag": [
-        1234567
-      ],
-      "merchantId": "1745348611792",
-      "restname": "Quán Anh Béo 22"
-    },
-    {
-      "id": "20",
-      "name": "Bánh mì thịt nguội",
-      "price": 50000,
-      "image": "https://tse1.mm.bing.net/th?id=OIP.IxSQxenayDYM2oZcHwj7PgHaEo&w=296&h=296&c=7",
-      "category": "bánh",
-      "rating": 4.9,
-      "location": "Vũng Tàu",
-      "address": "66 Trần Phú",
-      "phone": "0911000010",
-      "openTime": "8:00 - 21:00",
-      "status": "OPEN",
-      "description": "Bánh khọt giòn tan, tôm tươi, ăn kèm rau sống và nước mắm chua ngọt.",
-      "prepareTime": 10,
-      "note": "",
-      "discountPrice": 0,
-      "serviceFee": 0,
-      "tag": [
-        "1234567"
-      ],
-      "merchantId": "1745421209258",
-      "restname": "Ngõ Nhỏ Quán 2"
-    },
-    {
-      "id": "1be4",
-      "name": "Bánh mì thịt nguội",
-      "address": "thanh miện",
-      "image": "https://tse1.mm.bing.net/th?id=OIP.IxSQxenayDYM2oZcHwj7PgHaEo&w=296&h=296&c=7",
-      "prepareTime": 134,
-      "note": "ngon",
-      "price": 99990,
-      "discountPrice": 9990,
-      "serviceFee": 999,
-      "tag": [
-        "1111"
-      ],
-      "merchantId": "1745421209258",
-      "restname": "Ngõ Nhỏ Quán 2"
-    },
-    {
-      "id": "28a2",
-      "name": "Bún",
-      "address": "QQQQ",
-      "image": "https://res.cloudinary.com/dr1ihrvvg/image/upload/v1746880475/lnz4pqwiewz7fcir3gke.png",
-      "prepareTime": 3,
-      "note": "sssss",
-      "price": 40000,
-      "discountPrice": 10000,
-      "serviceFee": 10000,
-      "tag": [
-        "quoc"
-      ]
     }
   ]
 }

@@ -12,12 +12,12 @@ import Intro from './pages/Intro/Intro';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
-import MerchantList from './pages/MerchantList/MerchantList.jsx';
+import TutorList from './pages/TutorList/TutorList.jsx';
 import ChangeInfo from './pages/ChangeInfo/ChangeInfo.jsx';
-import OrderList from './pages/MerchantList/OrderList.jsx';
-import OrderDetail from './pages/MerchantList/OrderDetail.jsx';
+import OrderList from './pages/TutorList/OrderList.jsx';
+import OrderDetail from './pages/TutorList/OrderDetail.jsx';
 import Verify from './pages/Verify/Verify.jsx';
-import ExploreSection from './pages/Content/ExploreSection';
+// import ExploreSection from './pages/Content/ExploreSection';
 import AddFoodItem from './components/Addfood/AddFoodItem.jsx';
 import ListFood from './components/Listfood/ListFood.jsx';
 import FoodEdit from './components/Editfood/EditFood.jsx';
@@ -31,7 +31,7 @@ import Cart from './pages/Cart/Cart';
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, error: null, errorInfo: null };
   }
   static getDerivedStateFromError(error) {
     return { hasError: true };
@@ -39,9 +39,34 @@ class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
     console.log('Error:', error);
     console.log('Error Info:', errorInfo);
+    // Store details so we can render them in development for debugging
+    this.setState({ error, errorInfo });
   }
   render() {
     if (this.state.hasError) {
+      // In production show a friendly message. In development show details to help debugging.
+      if (process.env.NODE_ENV !== 'production') {
+        return (
+          <div style={{ padding: 20 }}>
+            <h1>Đã xảy ra lỗi. Vui lòng thử lại sau.</h1>
+            {this.state.error && (
+              <div style={{ marginTop: 12 }}>
+                <strong>Error:</strong>
+                <pre style={{ whiteSpace: 'pre-wrap', background: '#f7f7f7', padding: 8 }}>{String(this.state.error)}</pre>
+              </div>
+            )}
+            {this.state.errorInfo && this.state.errorInfo.componentStack && (
+              <div style={{ marginTop: 12 }}>
+                <strong>Component stack:</strong>
+                <pre style={{ whiteSpace: 'pre-wrap', background: '#f7f7f7', padding: 8 }}>{this.state.errorInfo.componentStack}</pre>
+              </div>
+            )}
+            <div style={{ marginTop: 12 }}>
+              <button className="btn btn-primary" onClick={() => window.location.reload()}>Reload</button>
+            </div>
+          </div>
+        );
+      }
       return <h1>Đã xảy ra lỗi. Vui lòng thử lại sau.</h1>;
     }
     return this.props.children;
@@ -60,15 +85,8 @@ function App() {
           <Route path="/" element={<LayoutWithNavbar />}>
             <Route path="home" element={
               <div className="home-banner-wrapper">
-                <div className="side-banner left">
-                  <img src="/images/rice.gif" alt="Banner trái" />
-                </div>
-                <div className="side-banner right">
-                  <img src="/images/rice.gif" alt="Banner phải" />
-                </div>
                 <div className="home-content">
                   <Header />
-                  <ExploreSection />
                   <About />
                 </div>
               </div>
@@ -79,7 +97,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
             <Route path="signup" element={<Signup />} />
-            <Route path="listmerchant" element={<MerchantList />} />
+            <Route path="listtutor" element={<TutorList />} />
             <Route path="changeinfo" element={<ChangeInfo />} />
             <Route path="orderlist" element={<OrderList />} />
             <Route path="orderdetail/:orderId" element={<OrderDetail />} />
@@ -88,7 +106,7 @@ function App() {
             <Route path="listfood" element={<ListFood />} />
             <Route path="editfood/:id" element={<FoodEdit />} />
             <Route path="main-content" element={<MainContent />} />
-            <Route path="/foods/:id" element={<FoodDetail />} />
+            <Route path="/courses/:id" element={<FoodDetail />} />
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
           </Route>

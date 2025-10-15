@@ -102,6 +102,26 @@
   cursor: pointer;
 }
 
+/* Constrain the image area so that tall images don't expand the card
+   and all cards have a consistent image box */
+.product-card .image-wrap {
+  width: 100%;
+  height: 150px; /* adjust desired visible height */
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-card .image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* crop to fill the box while preserving aspect */
+  transition: transform 0.3s ease;
+}
+
 .product-card img:hover {
   transform: scale(1.05);
 }
@@ -127,3 +147,39 @@
     font-size: 30px;
   }
 }
+
+/* Modal styles (ensure About's modal sits above hero/title) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999; /* very high to sit above the hero/title */
+}
+
+.modal-content {
+  position: relative;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  text-align: center;
+  z-index: 100000;
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 12px;
+}
+

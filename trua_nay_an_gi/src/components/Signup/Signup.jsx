@@ -6,11 +6,11 @@ import {useNavigate} from "react-router";
 
 function Signup() {
   const [form, setForm] = useState({
-    restname: '',
+    name: '',
     address: '',
     phone: '',
     email: '',
-    time: '',
+    availability: '',
   });
 
   const [errors, setErrors] = useState({
@@ -38,12 +38,12 @@ function Signup() {
         if (response.ok) {
           const data = await response.json();
           setForm({
-            restname: data.restname,
-            email: data.email || '',
-            phone: data.phone || '',
-            address: data.address || '',
-            time:data.time || ''
-          });
+              name: data.name || data.restname || '',
+              email: data.email || '',
+              phone: data.phone || '',
+              address: data.address || '',
+              availability: data.time || ''
+            });
           // Kiểm tra và hiển thị thông báo nếu thông tin chưa đầy đủ
           if (!data.email || !data.name || !data.phone || !data.address) {
             setMessage('Vui lòng cập nhật thông tin');
@@ -119,11 +119,11 @@ function Signup() {
 
     // Tạo đối tượng chứa dữ liệu cập nhật
     const updatedUser = {
-      restname: form.restname,
+      name: form.name,
       address: form.address,
       phone: form.phone,
       email: form.email,
-      time: form.time,
+      availability: form.availability,
     };
 
     try {
@@ -138,12 +138,12 @@ function Signup() {
 
       if (response.ok) {
         const data = await response.json();
-        setMessage('Đăng ký trở thành người bán hàng thành công');
+  setMessage('Đăng ký trở thành Tutor thành công');
         // Gửi yêu cầu tới admin để duyệt
         const approvalRequest = {
           userId: userId,
           status: 'pending', // Trạng thái yêu cầu đang chờ duyệt
-          role: 'merchant',
+          role: 'tutor',
           verified: false,
         };
 
@@ -172,15 +172,15 @@ function Signup() {
       <h2 className="mb-4 text-center">Đăng ký thành viên</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label" style={{ textAlign: 'left', display: 'block' }}>Tên cửa hàng </label>
+            <label className="form-label" style={{ textAlign: 'left', display: 'block' }}>Họ và tên / Tên hiển thị</label>
           <input
             type="text"
-            className={`form-control ${errors.restname ? 'is-invalid' : ''}`}
-            name="restname"
-            value={form.restname}
+            className={`form-control ${errors.name ? 'is-invalid' : ''}`}
+            name="name"
+            value={form.name}
             onChange={handleChange}
           />
-          {errors.restname && <div className="invalid-feedback">{errors.restname}</div>}
+          {errors.name && <div className="invalid-feedback">{errors.name}</div>}
         </div>
         <div className="mb-3">
           <label className="form-label" style={{ textAlign: 'left', display: 'block' }}>Địa chỉ</label>
@@ -220,15 +220,15 @@ function Signup() {
         </div>
 
         <div className="mb-3">
-          <label className="form-label" style={{ textAlign: 'left', display: 'block' }}>Giờ đóng - mở cửa </label>
+          <label className="form-label" style={{ textAlign: 'left', display: 'block' }}>Lịch giảng / Khung giờ</label>
           <input
             type="text"
-            className={`form-control ${errors.time ? 'is-invalid' : ''}`}
-            name="time"
-            value={form.time}
+            className={`form-control ${errors.availability ? 'is-invalid' : ''}`}
+            name="availability"
+            value={form.availability}
             onChange={handleChange}
           />
-          {errors.time && <div className="invalid-feedback">{errors.time}</div>}
+          {errors.availability && <div className="invalid-feedback">{errors.availability}</div>}
         </div>
 
         <button type="submit" className="btn btn-primary btn-block">Đăng ký</button>
@@ -238,7 +238,7 @@ function Signup() {
           <div className="alert alert-success mt-4">
             <h5 className="alert-heading">Yêu cầu đã được gửi!</h5>
             <p>
-              Yêu cầu đăng ký trở thành người bán hàng của bạn đã được gửi. Xin vui lòng chờ xét duyệt từ quản trị viên.
+              Yêu cầu đăng ký trở thành Tutor của bạn đã được gửi. Xin vui lòng chờ xét duyệt từ quản trị viên.
             </p>
           </div>
       )}

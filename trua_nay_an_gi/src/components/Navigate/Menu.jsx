@@ -24,7 +24,7 @@ const Menu = () => {
   useEffect(() => {
     const fetchFoods = async () => {
       try {
-        const res = await axios.get('http://localhost:3001/foods');
+        const res = await axios.get('http://localhost:3001/courses');
         let data = res.data;
 
         // Nếu có search → lọc theo name
@@ -68,7 +68,7 @@ const Menu = () => {
                 <div className="d-flex justify-content-center">
                   <button
                     className="btn btn-sm btn-info"
-                    onClick={() => navigate(`/foods/${food.id}`)}
+                    onClick={() => navigate(`/courses/${food.id}`)}
                   >
                     <FaEye /> Xem chi tiết
                   </button>

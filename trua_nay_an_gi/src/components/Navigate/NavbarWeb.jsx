@@ -1,37 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import './Navbar.css';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { FaRegBell, FaSignInAlt, FaUserCircle, FaSignOutAlt, FaSearch, FaShoppingCart } from 'react-icons/fa';
-import { useNavigate, NavLink } from 'react-router-dom';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
+import React, { useState, useEffect } from "react";
+import "./Navbar.css";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import {
+  FaRegBell,
+  FaSignInAlt,
+  FaUserCircle,
+  FaSignOutAlt,
+  FaSearch,
+  FaShoppingCart,
+} from "react-icons/fa";
+import { useNavigate, NavLink } from "react-router-dom";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 const NavbarWeb = () => {
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [username, setUsername] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
+  const [username, setUsername] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [allFoods, setAllFoods] = useState([]);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+  const [showNotif, setShowNotif] = useState(false);
   const navigate = useNavigate();
 
   // Hàm chuẩn hóa chuỗi (bỏ dấu, đổi về chữ thường)
   const normalizeString = (str) => {
-    return str.toLowerCase()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/đ/g, 'd')
-      .replace(/Đ/g, 'D');
+    return str
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/đ/g, "d")
+      .replace(/Đ/g, "D");
   };
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem("user");
     if (user) {
       const parsedUser = JSON.parse(user);
       setIsLoggedIn(true);
@@ -42,101 +52,307 @@ const NavbarWeb = () => {
 
   // Fetch all foods
   useEffect(() => {
-    fetch('http://localhost:3001/foods')
-      .then(res => res.json())
-      .then(data => {
+    fetch("http://localhost:3001/courses")
+      .then((res) => res.json())
+      .then((data) => {
         setAllFoods(data);
       })
-      .catch(err => console.error('Error fetching foods:', err));
+      .catch((err) => console.error("Error fetching foods:", err));
   }, []);
 
-  // Update suggestions when search query changes
+  // Fetch notifications (using orders for the current user) when logged in
   useEffect(() => {
-    if (searchQuery.trim() !== '') {
-      const normalizedSearch = normalizeString(searchQuery.trim());
-      const filtered = allFoods
-        .filter(food => 
-          normalizeString(food.name).includes(normalizedSearch)
-        )
-        .map(food => food.name);
-      setFilteredSuggestions(filtered);
-    } else {
-      setFilteredSuggestions([]);
+    const userStr = localStorage.getItem("user");
+    if (!userStr) return;
+    try {
+      const parsed = JSON.parse(userStr);
+      if (!parsed || !parsed.id) return;
+      fetch(`http://localhost:3001/orders?userId=${parsed.id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          // sort by createdAt desc and keep recent 5
+          const sorted = Array.isArray(data)
+            ? data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            : [];
+          setNotifications(sorted.slice(0, 5));
+        })
+        .catch((err) => console.error("Error fetching notifications:", err));
+    } catch (e) {
+      console.error("Error parsing user from localStorage", e);
     }
-  }, [searchQuery, allFoods]);
-
+  }, [isLoggedIn]);
+  // inline logout to avoid referencing removed functions
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    localStorage.removeItem("user");
     setIsLoggedIn(false);
-    setUsername('');
-    navigate('/');
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim() !== '') {
-      navigate(`/menu?search=${encodeURIComponent(searchQuery.trim())}`);
-      setShowSuggestions(false);
-    }
+    setUsername("");
+    navigate("/");
   };
 
   return (
-    <div>
-      <Navbar className="custom-navbar navbar-expand-sm navbar-dark" expand="lg" bg="dark" sticky="top">
-        <Container>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <NavLink className="navbar-brand" to="/home" style={{ display: 'flex', alignItems: 'center' }}>
-              <img src="navbar-brand.svg" alt="Logo" style={{ width: '30px', height: 'auto', marginRight: '8px' }} />
-              <span>Trưa nay ăn gì</span>
+    <header className="hero-header">
+      <nav className="top-nav">
+        <Container className="d-flex align-items-center justify-content-between">
+          <div className="d-flex align-items-center">
+            <img src="images/logoBK.png" alt="Logo" className="logo" />
+            <NavLink className="brand ms-2" to="/home">
+              HCMUT Tutor
             </NavLink>
-            <span className="nav-link text-primary ms-3">
-              CALL US: <span className="text-muted">(123) 456 7890</span>
-            </span>
           </div>
 
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mx-auto">
-              <NavLink className="nav-link" to="/home">Trang chủ</NavLink>
-              {role === 'merchant' && (
-                <NavLink className="nav-link" to="/listfood">Thực đơn</NavLink>
+          <div className="d-flex align-items-center">
+            <div className="nav-links d-none d-md-flex align-items-center me-3">
+              <NavLink to="/home" className="nav-link">
+                Trang chủ
+              </NavLink>
+              {/* Role-based navigation: Tutor, User, or Guest */}
+              {isLoggedIn && role === "tutor" ? (
+                <>
+                  <NavLink to="/tutor/dashboard" className="nav-link">
+                    Bảng điều khiển
+                  </NavLink>
+                  <NavLink to="/tutor/appointments" className="nav-link">
+                    Quản lý lịch hẹn
+                  </NavLink>
+                  <NavLink to="/tutor/students" className="nav-link">
+                    Sinh viên của tôi
+                  </NavLink>
+                  <NavLink to="/tutor/resources" className="nav-link">
+                    Tài liệu
+                  </NavLink>
+                  {/* Bell notifications for tutor */}
+                  <div className="position-relative ms-2">
+                    <button
+                      className="btn btn-link text-light p-0"
+                      onClick={() => setShowNotif(!showNotif)}
+                      aria-label="Thông báo"
+                    >
+                      <FaRegBell size={18} />
+                    </button>
+                    {showNotif && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          right: 0,
+                          top: "28px",
+                          width: 320,
+                          background: "#fff",
+                          color: "#000",
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                          borderRadius: 6,
+                          zIndex: 9999,
+                        }}
+                      >
+                        <div
+                          style={{
+                            padding: 10,
+                            borderBottom: "1px solid #eee",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Thông báo
+                        </div>
+                        <div style={{ maxHeight: 280, overflowY: "auto" }}>
+                          {notifications.length === 0 ? (
+                            <div style={{ padding: 12 }}>
+                              Không có thông báo
+                            </div>
+                          ) : (
+                            notifications.map((n) => (
+                              <div
+                                key={n.id}
+                                style={{
+                                  padding: 10,
+                                  borderBottom: "1px solid #f1f1f1",
+                                }}
+                              >
+                                <div style={{ fontSize: 14, fontWeight: 600 }}>
+                                  Thông báo #{n.id}
+                                </div>
+                                <div style={{ fontSize: 12, color: "#666" }}>
+                                  {n.status} •{" "}
+                                  {n.createdAt
+                                    ? new Date(n.createdAt).toLocaleString()
+                                    : ""}
+                                </div>
+                              </div>
+                            ))
+                          )}
+                        </div>
+                        <div style={{ padding: 8, textAlign: "center" }}>
+                          <button
+                            className="btn btn-sm btn-link"
+                            onClick={() => {
+                              setShowNotif(false);
+                              navigate("/notifications");
+                            }}
+                          >
+                            Xem tất cả
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </>
+              ) : isLoggedIn && role === "user" ? (
+                <>
+                  <NavLink to="/dashboard" className="nav-link">
+                    Bảng điều khiển
+                  </NavLink>
+                  <NavLink to="/my-sessions" className="nav-link">
+                    Buổi học của tôi
+                  </NavLink>
+                  <NavLink to="/find-tutor" className="nav-link">
+                    Tìm Tutor
+                  </NavLink>
+                  <NavLink to="/resources" className="nav-link">
+                    Tài liệu
+                  </NavLink>
+                  {/* Bell notifications placed after Tài liệu */}
+                  <div className="position-relative ms-2">
+                    <button
+                      className="btn btn-link text-light p-0"
+                      onClick={() => setShowNotif(!showNotif)}
+                      aria-label="Thông báo"
+                    >
+                      <FaRegBell size={18} />
+                    </button>
+                    {showNotif && (
+                      <div
+                        style={{
+                          position: "absolute",
+                          right: 0,
+                          top: "28px",
+                          width: 320,
+                          background: "#fff",
+                          color: "#000",
+                          boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+                          borderRadius: 6,
+                          zIndex: 9999,
+                        }}
+                      >
+                        <div
+                          style={{
+                            padding: 10,
+                            borderBottom: "1px solid #eee",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          Thông báo
+                        </div>
+                        <div style={{ maxHeight: 280, overflowY: "auto" }}>
+                          {notifications.length === 0 ? (
+                            <div style={{ padding: 12 }}>
+                              Không có thông báo
+                            </div>
+                          ) : (
+                            notifications.map((n) => (
+                              <div
+                                key={n.id}
+                                style={{
+                                  padding: 10,
+                                  borderBottom: "1px solid #f1f1f1",
+                                }}
+                              >
+                                <div style={{ fontSize: 14, fontWeight: 600 }}>
+                                  Đơn hàng #{n.id}
+                                </div>
+                                <div style={{ fontSize: 13 }}>
+                                  Tổng:{" "}
+                                  {n.total ||
+                                  n.totalAmount ||
+                                  n.totalAmount === 0
+                                    ? n.total || n.totalAmount
+                                    : ""}{" "}
+                                  VNĐ
+                                </div>
+                                <div style={{ fontSize: 12, color: "#666" }}>
+                                  {n.status} •{" "}
+                                  {n.createdAt
+                                    ? new Date(n.createdAt).toLocaleString()
+                                    : ""}
+                                </div>
+                              </div>
+                            ))
+                          )}
+                        </div>
+                        <div style={{ padding: 8, textAlign: "center" }}>
+                          <button
+                            className="btn btn-sm btn-link"
+                            onClick={() => {
+                              setShowNotif(false);
+                              navigate("/orders");
+                            }}
+                          >
+                            Xem tất cả
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <NavLink to="/tutorials" className="nav-link">
+                    Chương trình
+                  </NavLink>
+                  <NavLink to="/testimonials" className="nav-link">
+                    Đánh giá
+                  </NavLink>
+                  <NavLink to="/blog" className="nav-link">
+                    Cộng đồng
+                  </NavLink>
+                  <NavLink to="/about" className="nav-link">
+                    Giới thiệu
+                  </NavLink>
+                  <NavLink to="/contact" className="nav-link">
+                    Liên hệ
+                  </NavLink>
+                </>
               )}
-            </Nav>
-
-            <div className="d-flex align-items-center">
-              {role === 'admin' && (
-                <NavLink to="/listmerchant" className="text-light mx-2">Danh sách người bán</NavLink>
-              )}
-              {role === 'merchant' && (
-                <NavLink to="/changeinfo" className="text-light mx-2">Thông tin cửa hàng</NavLink>
-              )}
-            </div>
-
-            <div className="d-flex align-items-center">
-              <span className="text-light mx-2"><FaRegBell /></span>
-              <NavLink to="/#about" className="text-light mx-2">Hỗ trợ</NavLink>
             </div>
 
             {!isLoggedIn ? (
-              <>
-                <NavLink to="/register" className="btn btn-outline-primary mx-2">Đăng ký</NavLink>
-                <NavLink to="/login" className="btn btn-primary"><FaSignInAlt /> Đăng nhập</NavLink>
-              </>
+              <NavLink to="/login" className="btn btn-primary login-btn">
+                <FaSignInAlt /> Đăng nhập
+              </NavLink>
             ) : (
               <NavDropdown
-                title={<span><FaUserCircle /> {username}</span>}
+                title={
+                  <span>
+                    <FaUserCircle /> {username}
+                  </span>
+                }
                 id="user-dropdown"
                 className="text-light"
                 menuVariant="dark"
               >
-                {(role === 'user' || role === 'merchant') && (
-                  <NavDropdown.Item as={NavLink} to="/profile" className="text-dark">Tài khoản</NavDropdown.Item>
+                {(role === "user" || role === "tutor") && (
+                  <NavDropdown.Item
+                    as={NavLink}
+                    to="/profile"
+                    className="text-dark"
+                  >
+                    Tài khoản
+                  </NavDropdown.Item>
                 )}
-                {role === 'merchant' && (
-                  <NavDropdown.Item as={NavLink} to="/orderlist" className="text-dark">Quản lý đơn hàng</NavDropdown.Item>
+                {role === "tutor" && (
+                  <NavDropdown.Item
+                    as={NavLink}
+                    to="/orderlist"
+                    className="text-dark"
+                  >
+                    Quản lý đơn hàng
+                  </NavDropdown.Item>
                 )}
-                {role === 'admin' && (
-                  <NavDropdown.Item as={NavLink} to="/users" className="text-dark">Quản lý tài khoản</NavDropdown.Item>
+                {role === "admin" && (
+                  <NavDropdown.Item
+                    as={NavLink}
+                    to="/users"
+                    className="text-dark"
+                  >
+                    Quản lý tài khoản
+                  </NavDropdown.Item>
                 )}
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handleLogout} className="text-dark">
@@ -144,103 +360,18 @@ const NavbarWeb = () => {
                 </NavDropdown.Item>
               </NavDropdown>
             )}
-
-            <NavDropdown
-              title={
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <img src="/images/Flag_of_Vietnam.png" alt="VN" style={{ width: '20px', marginRight: '5px' }} />
-                  <span>Tiếng Việt</span>
-                </div>
-              }
-              id="language-dropdown"
-              className="ms-3"
-              menuVariant="dark"
-            >
-              <NavDropdown.Item href="#vietnam" className="text-dark">
-                <img src="/images/Flag_of_Vietnam.png" alt="VN" style={{ width: '20px', marginRight: '5px' }} />
-                Tiếng Việt
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#english" className="text-dark">
-                <img src="/images/Flag_of_the_United_States.png" alt="EN" style={{ width: '20px', marginRight: '5px' }} />
-                English
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#chinese" className="text-dark">
-                <img src="/images/Flag_of_China.png" alt="CN" style={{ width: '20px', marginRight: '5px' }} />
-                中文
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-
-      {/* Thanh tìm kiếm + gợi ý + giỏ hàng */}
-      <Navbar bg="dark" className="border-bottom">
-        <Container>
-          <div style={{ position: 'relative' }} className="flex-grow-1 mx-4">
-            <Form className="d-flex" onSubmit={handleSearch}>
-              <Form.Control
-                type="search"
-                placeholder="Tìm kiếm món ăn..."
-                className="me-3"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setShowSuggestions(true)}
-                onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
-                style={{ borderRadius: '5px' }}
-              />
-              <Button variant="outline-primary" type="submit" style={{ borderRadius: '5px' }}>
-                <FaSearch />
-              </Button>
-            </Form>
-
-            {showSuggestions && searchQuery.trim() !== '' && (
-              <div style={{
-                position: 'absolute',
-                top: '100%',
-                left: 0,
-                right: 0,
-                background: 'white',
-                border: '1px solid #ddd',
-                borderTop: 'none',
-                zIndex: 9999,
-                maxHeight: '200px',
-                overflowY: 'auto'
-              }}>
-                {filteredSuggestions.length > 0 ? (
-                  filteredSuggestions.map((item, index) => (
-                    <div
-                      key={index}
-                      onMouseDown={() => {
-                        navigate(`/menu?search=${encodeURIComponent(item)}`);
-                        setShowSuggestions(false);
-                        setSearchQuery(item);
-                      }}
-                      style={{
-                        padding: '8px 12px',
-                        cursor: 'pointer',
-                        borderBottom: '1px solid #eee'
-                      }}
-                    >
-                      {item}
-                    </div>
-                  ))
-                ) : (
-                  <div style={{ padding: '8px 12px', color: '#888' }}>
-                    Không có gợi ý phù hợp.
-                  </div>
-                )}
-              </div>
-            )}
           </div>
-
-          <OverlayTrigger placement="bottom" overlay={<Tooltip>Xem giỏ hàng</Tooltip>}>
-            <NavLink to="/cart" className="ms-3 position-relative text-light">
-              <FaShoppingCart size={24} />
-            </NavLink>
-          </OverlayTrigger>
         </Container>
-      </Navbar>
-    </div>
+      </nav>
+
+      <div className="hero-content">
+        <Container>
+          <h1 className="hero-title">
+            <strong>Tutor Support System</strong>
+          </h1>
+        </Container>
+      </div>
+    </header>
   );
 };
 

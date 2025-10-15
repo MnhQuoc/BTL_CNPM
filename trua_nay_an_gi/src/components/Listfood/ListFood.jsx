@@ -13,7 +13,7 @@ const ListFood = () => {
 
   const fetchFoods = async () => {
     try {
-      const res = await axios.get('http://localhost:3001/foods');
+      const res = await axios.get('http://localhost:3001/courses');
       setFoods(res.data);
     } catch (err) {
       console.error('Lỗi khi tải dữ liệu:', err);
@@ -25,7 +25,7 @@ const ListFood = () => {
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:3001/foods/${id}`);
+      await axios.delete(`http://localhost:3001/courses/${id}`);
       const updatedFoods = foods.filter(food => food.id !== id);
       setFoods(updatedFoods);
     } catch (err) {

@@ -33,7 +33,7 @@ const BackToTop = () => {
           borderRadius: "50%",
           cursor: "pointer",
           zIndex: 9999,
-          boxShadow: "0 4px 8px rgba(0,0,0,0.3)"
+          boxShadow: "0 4px 8px rgba(0,0,0,0.3)",
         }}
         title="Lên đầu trang"
       >

@@ -22,7 +22,7 @@ const FoodDetail = () => {
     
     const fetchData = async () => {
       try {
-        const res = await axios.get(`http://localhost:3001/foods/${id}`);
+        const res = await axios.get(`http://localhost:3001/courses/${id}`);
         setFood(res.data);
       } catch (err) {
         console.error('Lỗi khi tải dữ liệu:', err);

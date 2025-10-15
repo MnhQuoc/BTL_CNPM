@@ -3,16 +3,19 @@ import './About.css';
 import axios from 'axios';
 import MainContent from '../Content/MainContent';
 import { useNavigate } from 'react-router'; // ✅ thêm
+import { useCart } from '../../contexts/CartContext';
 
 const About = () => {
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const scrollRef = useRef(null);
   const navigate = useNavigate(); // ✅ thêm
+  const { addToCart } = useCart();
 
   useEffect(() => {
-    axios.get('http://localhost:3001/foods')
+    axios.get('http://localhost:3001/courses')
       .then(res => setProducts(res.data))
-      .catch(err => console.error('Lỗi khi fetch foods:', err));
+      .catch(err => console.error('Lỗi khi fetch courses:', err));
   }, []);
 
   const scrollLeft = () => scrollRef.current.scrollBy({ left: -400, behavior: 'smooth' });
@@ -22,7 +25,7 @@ const About = () => {
     <>
       <div className="flash-sale-section">
         <div className="flash-sale-header">
-          <h2>Top món ăn được yêu thích</h2>
+          <h2>Các khóa học nổi bật</h2>
           <a href="#" className="view-all">Xem tất cả &gt;</a>
         </div>
 
@@ -33,10 +36,12 @@ const About = () => {
               <div 
                 className="product-card" 
                 key={product.id}
-                onClick={() => navigate(`/foods/${product.id}`)} // ✅ điều hướng khi click
+                onClick={() => setSelectedProduct(product)}
                 style={{ cursor: 'pointer' }}
               >
-                <img src={product.image} alt={product.name} />
+                <div className="image-wrap">
+                  <img src={product.image} alt={product.name} />
+                </div>
                 <p className="product-name">{product.name}</p>
                 <p className="price">{product.price.toLocaleString()}₫</p>
               </div>
@@ -47,6 +52,41 @@ const About = () => {
       </div>
 
       <MainContent />
+
+      {selectedProduct && (
+        <div className="modal-overlay" onClick={() => setSelectedProduct(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h2>{selectedProduct.name}</h2>
+            <img src={selectedProduct.image} alt={selectedProduct.name} />
+            <p>
+              <strong>Nhà hàng:</strong> {selectedProduct.restname || "Chưa cập nhật"}
+            </p>
+            <p>
+              <strong>Địa chỉ:</strong> {selectedProduct.address || "Chưa có"}
+            </p>
+            <p>
+              <strong>Điện thoại:</strong> {selectedProduct.phone || "Chưa có"}
+            </p>
+            <p>
+              <strong>Giá:</strong> {selectedProduct.price?.toLocaleString?.() || selectedProduct.price}₫
+            </p>
+            <p>
+              <strong>Giờ mở cửa:</strong> {selectedProduct.openTime || "Chưa rõ"}{" "}
+              <span className="open-status">{selectedProduct.status || "OPEN"}</span>
+            </p>
+            <p>{selectedProduct.description || "Không có mô tả."}</p>
+            <div className="modal-buttons">
+              <button  className="close-button"
+                onClick={(e) => { e.stopPropagation(); addToCart(selectedProduct); alert('Đã thêm vào giỏ hàng!'); setSelectedProduct(null); }}>
+                Đặt hàng
+              </button>
+              <button onClick={() => setSelectedProduct(null)} className="close-button">
+                Đóng
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

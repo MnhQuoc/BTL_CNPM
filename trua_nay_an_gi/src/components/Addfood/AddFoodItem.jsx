@@ -68,7 +68,7 @@ const AddFoodItem = () => {
         image: imageUrl,
       };
 
-      await axios.post('http://localhost:3001/foods', data);
+      await axios.post('http://localhost:3001/courses', data);
       setMessage('✅ Đã thêm món ăn thành công!');
       setIsSuccess(true);
 
