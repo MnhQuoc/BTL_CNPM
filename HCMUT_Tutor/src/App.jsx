@@ -1,17 +1,17 @@
 import './App.css';
 import React from 'react';
 import { Route, Routes } from 'react-router';
-import LayoutWithNavbar from "./components/LayoutWithNavbar/LayoutWithNavbar";
+import LayoutWithNavbar from "./components/LayoutWithNavbar/LayoutWithNavbar.jsx";
 
-import Header from './pages/Home/Header';
-import About from './pages/RecommendFood/About';
-import Team from './pages/Team/Team';
-import Profile from './pages/Profile/Profile';
-import Users from './pages/Users/Users';
-import Intro from './pages/Intro/Intro';
-import Register from './components/Register/Register';
-import Login from './components/Login/Login';
-import Signup from './components/Signup/Signup';
+import Header from './pages/Home/Header.jsx';
+import About from './pages/RecommendFood/About.jsx';
+import Team from './pages/Team/Team.jsx';
+import Profile from './pages/Profile/Profile.jsx';
+import Users from './pages/Users/Users.jsx';
+import Intro from './pages/Intro/Intro.jsx';
+import Register from './components/Register/Register.jsx';
+import Login from './components/Login/Login.jsx';
+import Signup from './components/Signup/Signup.jsx';
 import TutorList from './pages/TutorList/TutorList.jsx';
 import ChangeInfo from './pages/ChangeInfo/ChangeInfo.jsx';
 import OrderList from './pages/TutorList/OrderList.jsx';
@@ -24,9 +24,9 @@ import FoodEdit from './components/Editfood/EditFood.jsx';
 import MainContent from './pages/Content/MainContent.jsx';
 import Menu from './components/Navigate/Menu.jsx';
 import FoodDetail from './pages/FoodDetail/FoodDetail.jsx'; 
-import Checkout from './pages/Checkout/Checkout';
-import { CartProvider } from './contexts/CartContext';
-import Cart from './pages/Cart/Cart';
+import Checkout from './pages/Checkout/Checkout.jsx';
+import { CartProvider } from './contexts/CartContext.jsx';
+import Cart from './pages/Cart/Cart.jsx';
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
