@@ -1,12 +1,9 @@
 # Dự án trưa nay ăn gì
 
-- Khách hàng: CodeGym
-- Mentor: Nguyễn Bá Tuấn Anh
+- Khách hàng: HCMUT
+- Mentor: 
 - Develop Team:
-  - [Lê Hoàng Phúc](https://github.com/HoangPhuc08022004z) (lhphuc822004@gmail.com)
-  - [Nguyễn Thanh Tuấn](https://github.com/TUAN1998CG) (albumanh1234@gmail.com)
   - [Nguyễn Minh Quốc](https://github.com/MnhQuoc) (nguyenminhquoc812005@gmail.com)
-  - [Nguyễn Xuân Thịnh](https://github.com/xuanco) (tote.that.tha@gmail.com)
 ## Công nghệ:
 
   - Framework: React 19
