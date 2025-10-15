@@ -17,13 +17,6 @@ const Verify = () => {
       }
 
       try {
-<<<<<<< HEAD
-        const response = await fetch(`http://localhost:3001/verify/${userId}`);
-        if (!response.ok) throw new Error("Xác minh thất bại");
-
-        const message = await response.text();
-        setStatus({ type: "success", message });
-=======
         const res = await fetch(`http://localhost:3001/users/${userId}`);
         if (!res.ok) throw new Error("Không tìm thấy người dùng.");
 
@@ -41,7 +34,6 @@ const Verify = () => {
 
           setStatus({ type: "success", message: "Xác minh tài khoản thành công!" });
         }
->>>>>>> last_update
       } catch (error) {
         console.error("Lỗi xác minh:", error);
         setStatus({ type: "danger", message: "Đã xảy ra lỗi khi xác minh tài khoản." });
