@@ -249,11 +249,7 @@ function Register() {
 
           <button
             type="submit"
-<<<<<<< HEAD
-            className="btn btn-primary w-100"
-=======
             className=" btn pill-btn w-100"
->>>>>>> last_update
             style={{ padding: '15px' }}
             disabled={loading}
           >

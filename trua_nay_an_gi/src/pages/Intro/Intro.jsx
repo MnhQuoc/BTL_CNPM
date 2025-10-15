@@ -132,11 +132,7 @@ const Intro = () => {
           </div>
         </Col>
       </Row>
-<<<<<<< HEAD
-      {loading && <LoadingCat onFinish={() => navigate("/home")} />}
-=======
       {/* {loading && <LoadingCat />} */}
->>>>>>> last_update
     </div>
   );
 };
