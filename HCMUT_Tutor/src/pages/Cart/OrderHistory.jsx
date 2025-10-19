@@ -109,8 +109,6 @@ const OrderHistory = () => {
                         <tr key={index}>
                           <td>{item.name}</td>
                           <td>{item.quantity}</td>
-                          <td>{item.price.toLocaleString('vi-VN')}đ</td>
-                          <td>{(item.price * item.quantity).toLocaleString('vi-VN')}đ</td>
                         </tr>
                       ))}
                     </tbody>

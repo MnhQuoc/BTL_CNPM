@@ -11,8 +11,6 @@ const AddFoodItem = () => {
     image: '',
     prepareTime: '',
     note: '',
-    price: '',
-    discountPrice: '',
     serviceFee: '',
     tag: ''
   });
@@ -61,8 +59,6 @@ const AddFoodItem = () => {
       const data = {
         ...formData,
         prepareTime: parseInt(formData.prepareTime) || 0,
-        price: parseFloat(formData.price),
-        discountPrice: parseFloat(formData.discountPrice),
         serviceFee: parseFloat(formData.serviceFee) || 0,
         tag: formData.tag.split(',').map(tag => tag.trim()),
         image: imageUrl,
@@ -78,8 +74,6 @@ const AddFoodItem = () => {
         image: '',
         prepareTime: '',
         note: '',
-        price: '',
-        discountPrice: '',
         serviceFee: '',
         tag: ''
       });
@@ -160,16 +154,6 @@ const AddFoodItem = () => {
         <div className="mb-3">
           <label htmlFor="note" className="form-label">Ghi chú</label>
           <textarea className="form-control" id="note" rows="3" value={formData.note} onChange={handleChange}></textarea>
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="price" className="form-label">Giá tiền (*)</label>
-          <input type="number" className="form-control" id="price" value={formData.price} onChange={handleChange} required />
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="discountPrice" className="form-label">Giá KM (*)</label>
-          <input type="number" className="form-control" id="discountPrice" value={formData.discountPrice} onChange={handleChange} required />
         </div>
 
         <div className="mb-3">

@@ -76,7 +76,6 @@ const Cart = () => {
                 {cartItems.map((item) => (
                   <tr key={item.id}>
                     <td>{item.name}</td>
-                    <td>{item.price.toLocaleString('vi-VN')}đ</td>
                     <td>
                       <div className="d-flex align-items-center justify-content-center">
                         <Button 
@@ -96,7 +95,6 @@ const Cart = () => {
                         </Button>
                       </div>
                     </td>
-                    <td>{(item.price * item.quantity).toLocaleString('vi-VN')}đ</td>
                     <td>
                       <Button 
                         variant="danger" 

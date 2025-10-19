@@ -42,7 +42,6 @@ const FoodDetail = () => {
     const itemToAdd = {
       id: food.id,
       name: food.name,
-      price: food.discountPrice || food.price,
       image: food.image,
       restname: food.restname
     };
@@ -93,14 +92,7 @@ const FoodDetail = () => {
                 <FaPhoneAlt className="text-success me-2" />
                 {food.phone}
               </p>
-              <p className="fs-4 text-danger fw-bold">
-                {food.discountPrice > 0 ? food.discountPrice : food.price}đ{' '}
-                {food.discountPrice > 0 && (
-                  <span className="text-muted text-decoration-line-through ms-2 fs-6">
-                    {food.price}đ
-                  </span>
-                )}
-              </p>
+            
               <p>
                 <FaClock className="text-primary me-2" />
                 {food.openTime}

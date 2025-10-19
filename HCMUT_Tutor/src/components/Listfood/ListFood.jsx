@@ -60,8 +60,6 @@ const ListFood = () => {
                 <h5 className="card-title">{food.name}</h5>
                 <p className="card-text">{food.note}</p>
                 <p className="card-text">
-                  <strong>Giá:</strong> {food.price}đ <br />
-                  <strong>Giá KM:</strong> {food.discountPrice}đ <br />
                   <strong>Phí DV:</strong> {food.serviceFee}đ
                 </p>
                 <div className="d-flex justify-content-between">

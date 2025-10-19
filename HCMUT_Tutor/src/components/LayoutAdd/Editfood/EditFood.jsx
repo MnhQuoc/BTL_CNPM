@@ -63,8 +63,6 @@ const FoodEdit = () => {
         ...food,
         image: imageUrl,
         prepareTime: parseInt(food.prepareTime) || 0,
-        price: parseFloat(food.price),
-        discountPrice: parseFloat(food.discountPrice),
         serviceFee: parseFloat(food.serviceFee) || 0,
         tag: food.tag.split(',').map(t => t.trim()),
       };
@@ -128,18 +126,6 @@ const FoodEdit = () => {
               <Form.Group className="mb-3" controlId="prepareTime">
                 <Form.Label>Thời gian chuẩn bị</Form.Label>
                 <Form.Control type="number" value={food.prepareTime} onChange={handleChange} />
-              </Form.Group>
-            </Col>
-            <Col md={4}>
-              <Form.Group className="mb-3" controlId="price">
-                <Form.Label>Giá</Form.Label>
-                <Form.Control type="number" value={food.price} onChange={handleChange} />
-              </Form.Group>
-            </Col>
-            <Col md={4}>
-              <Form.Group className="mb-3" controlId="discountPrice">
-                <Form.Label>Giá khuyến mãi</Form.Label>
-                <Form.Control type="number" value={food.discountPrice} onChange={handleChange} />
               </Form.Group>
             </Col>
           </Row>

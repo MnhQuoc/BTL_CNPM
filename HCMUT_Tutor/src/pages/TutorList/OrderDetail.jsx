@@ -36,14 +36,6 @@ const OrderDetail = () => {
 
   if (!order || !customer) return <p>Đang tải dữ liệu...</p>;
 
-  const calculateSubtotal = () => {
-    return order.items.reduce((total, item) => {
-      const food = findFoodById(item.foodId);
-      if (!food) return total;
-      return total + (food.discountPrice || food.price) * item.quantity;
-    }, 0);
-  };
-
   const deliveryFee = 15000;
   const serviceFee = 5000;
   const discount = 10000;
@@ -102,13 +94,10 @@ const OrderDetail = () => {
               {order.items.map((item, idx) => {
                 const food = findFoodById(item.foodId);
                 if (!food) return null;
-                const price = food.discountPrice || food.price;
                 return (
                   <tr key={idx}>
                     <td>{food.name}</td>
                     <td>{item.quantity}</td>
-                    <td>{formatCurrency(price)}</td>
-                    <td>{formatCurrency(price * item.quantity)}</td>
                   </tr>
                 );
               })}

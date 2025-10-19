@@ -243,7 +243,6 @@ const Checkout = () => {
                 {cartItems.map((item, index) => (
                   <div key={index} className="d-flex justify-content-between mb-2">
                     <span>{item.quantity}x {item.name}</span>
-                    <span>{(item.price * item.quantity).toLocaleString()}đ</span>
                   </div>
                 ))}
               </div>

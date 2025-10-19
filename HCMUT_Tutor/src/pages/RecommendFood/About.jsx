@@ -43,7 +43,6 @@ const About = () => {
                   <img src={product.image} alt={product.name} />
                 </div>
                 <p className="product-name">{product.name}</p>
-                <p className="price">{product.price.toLocaleString()}₫</p>
               </div>
             ))}
           </div>
@@ -57,24 +56,24 @@ const About = () => {
         <div className="modal-overlay" onClick={() => setSelectedProduct(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h2>{selectedProduct.name}</h2>
-            <img src={selectedProduct.image} alt={selectedProduct.name} />
+            <div className="modal-image-container">
+              <img src={selectedProduct.image} alt={selectedProduct.name} />
+            </div>
             <p>
-              <strong>Nhà hàng:</strong> {selectedProduct.restname || "Chưa cập nhật"}
+              <strong>Giảng viên:</strong> {selectedProduct.restname || "Chưa cập nhật"}
             </p>
             <p>
-              <strong>Địa chỉ:</strong> {selectedProduct.address || "Chưa có"}
+              <strong>Phòng học:</strong> {selectedProduct.address || "Chưa có"}
             </p>
             <p>
               <strong>Điện thoại:</strong> {selectedProduct.phone || "Chưa có"}
             </p>
             <p>
-              <strong>Giá:</strong> {selectedProduct.price?.toLocaleString?.() || selectedProduct.price}₫
+              <strong>Thời gian:</strong> {selectedProduct.openTime || "Chưa rõ"}{" "}
             </p>
             <p>
-              <strong>Giờ mở cửa:</strong> {selectedProduct.openTime || "Chưa rõ"}{" "}
-              <span className="open-status">{selectedProduct.status || "OPEN"}</span>
+              <strong>Tình trạng:</strong> {selectedProduct.status || "Chưa có"}
             </p>
-            <p>{selectedProduct.description || "Không có mô tả."}</p>
             <div className="modal-buttons">
               <button  className="close-button"
                 onClick={(e) => { e.stopPropagation(); addToCart(selectedProduct); alert('Đã thêm vào giỏ hàng!'); setSelectedProduct(null); }}>

@@ -28,7 +28,6 @@ const OrderItem = ({ order, onStatusUpdate }) => {
       <p><strong>Thời gian đặt:</strong> {order.orderTime}</p>
       <p><strong>Người đặt:</strong> {order.customerName}</p>
       <p><strong>Tổng món:</strong> {order.totalItems}</p>
-      <p><strong>Tổng tiền:</strong> {order.totalPrice.toLocaleString()} đ</p>
       <p><strong>Trạng thái:</strong> {status}</p>
 
       {status === "Chờ nhận hàng" && (

@@ -29,9 +29,6 @@ const OrderDetail = () => {
 
   if (!order || !customer) return <div>Đang tải dữ liệu...</div>;
 
-  const calculateSubtotal = () => {
-    return order.items.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
 
   return (
     <div className="p-6">
@@ -61,7 +58,6 @@ const OrderDetail = () => {
             <tr key={index} className="border-t">
               <td className="p-2">{item.name}</td>
               <td className="p-2">{item.quantity}</td>
-              <td className="p-2">{item.price.toLocaleString()}đ</td>
             </tr>
           ))}
         </tbody>
