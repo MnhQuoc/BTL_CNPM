@@ -47,6 +47,11 @@ const NavbarWeb = () => {
       const parsedUser = JSON.parse(user);
       setUsername(parsedUser.username);
       setRole(parsedUser.role);
+      setIsLoggedIn(true); 
+    } else {
+      setIsLoggedIn(false); 
+      setUsername("");
+      setRole("");
     }
   }, []);
 
