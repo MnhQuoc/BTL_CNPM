@@ -7,8 +7,10 @@ function Register() {
   const [form, setForm] = useState({
     username: '',
     password: '',
-    phone: '',
+    fullName: '',
+    birthYear: '',
     email: '',
+    phone: '',
   });
 
   const [message, setMessage] = useState('');
@@ -16,8 +18,10 @@ function Register() {
   const [errors, setErrors] = useState({
     username: '',
     password: '',
-    phone: '',
+    fullName: '',
+    birthYear: '',
     email: '',
+    phone: '',
   });
 
   const navigate = useNavigate();
@@ -45,6 +49,18 @@ function Register() {
       errorMessage = 'Mật khẩu phải từ 8 ký tự trở lên và bao gồm cả chữ và số';
     }
 
+    if (name === 'fullName' && value.trim().length < 2) {
+      errorMessage = 'Họ tên phải từ 2 ký tự trở lên';
+    }
+
+    if (name === 'birthYear') {
+      const year = parseInt(value);
+      const currentYear = new Date().getFullYear();
+      if (isNaN(year) || year < 1900 || year > currentYear) {
+        errorMessage = 'Năm sinh không hợp lệ';
+      }
+    }
+
     if (name === 'phone' && !/^\d{10}$/.test(value)) {
       errorMessage = 'Số điện thoại phải có 10 số';
     }
@@ -62,14 +78,27 @@ function Register() {
   const validateForm = () => {
     let valid = true;
     let errorMessages = {};
+    
     if (form.username.length < 8) {
       errorMessages.username = 'Tên đăng nhập phải từ 8 ký tự trở lên';
       valid = false;
     }
+    
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d).{8,}$/;
     if (!passwordRegex.test(form.password)) {
-      errorMessages.password =
-        'Mật khẩu phải từ 8 ký tự trở lên và bao gồm cả chữ và số';
+      errorMessages.password = 'Mật khẩu phải từ 8 ký tự trở lên và bao gồm cả chữ và số';
+      valid = false;
+    }
+
+    if (form.fullName.trim().length < 2) {
+      errorMessages.fullName = 'Họ tên phải từ 2 ký tự trở lên';
+      valid = false;
+    }
+
+    const year = parseInt(form.birthYear);
+    const currentYear = new Date().getFullYear();
+    if (isNaN(year) || year < 1900 || year > currentYear) {
+      errorMessages.birthYear = 'Năm sinh không hợp lệ';
       valid = false;
     }
 
@@ -118,15 +147,17 @@ function Register() {
       }
 
       const newUserId = Date.now();
-      const { username, password, phone, email } = form;
+      const { username, password, fullName, birthYear, email, phone } = form;
 
       // Đăng ký user mới
       await axios.post('http://localhost:3001/users', {
         id: newUserId,
         username,
         password,
-        phone,
+        fullName,
+        birthYear: parseInt(birthYear),
         email,
+        phone,
         role: 'user',
         blocked: false,
         verified: false,
@@ -164,7 +195,7 @@ function Register() {
       });
 
       setMessage('Đăng ký thành công! Vui lòng kiểm tra email để xác nhận.');
-      setForm({ username: '', password: '', phone: '', email: '' });
+      setForm({ username: '', password: '', fullName: '', birthYear: '', email: '', phone: '' });
       setTimeout(() => navigate('/login'), 3000);
     } catch (error) {
       console.error('Lỗi:', error);
@@ -229,21 +260,45 @@ function Register() {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="phone" className="form-label">
-              Số điện thoại (<span className="text-danger">*</span>):
+            <label htmlFor="fullName" className="form-label">
+              Họ tên (<span className="text-danger">*</span>):
             </label>
             <input
               type="text"
-              id="phone"
-              name="phone"
+              id="fullName"
+              name="fullName"
               className="form-control"
-              value={form.phone}
+              value={form.fullName}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Nhập số điện thoại của bạn"
+              placeholder="Nhập họ tên của bạn"
               required
             />
-            {errors.phone && <p className="text-danger">{errors.phone}</p>}
+            {errors.fullName && (
+              <p className="text-danger">{errors.fullName}</p>
+            )}
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="birthYear" className="form-label">
+              Năm sinh (<span className="text-danger">*</span>):
+            </label>
+            <input
+              type="number"
+              id="birthYear"
+              name="birthYear"
+              className="form-control"
+              value={form.birthYear}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Nhập năm sinh của bạn"
+              min="1900"
+              max={new Date().getFullYear()}
+              required
+            />
+            {errors.birthYear && (
+              <p className="text-danger">{errors.birthYear}</p>
+            )}
           </div>
 
           <div className="mb-3">
@@ -262,6 +317,24 @@ function Register() {
               required
             />
             {errors.email && <p className="text-danger">{errors.email}</p>}
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="phone" className="form-label">
+              Số điện thoại (<span className="text-danger">*</span>):
+            </label>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              className="form-control"
+              value={form.phone}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              placeholder="Nhập số điện thoại của bạn"
+              required
+            />
+            {errors.phone && <p className="text-danger">{errors.phone}</p>}
           </div>
 
           <button

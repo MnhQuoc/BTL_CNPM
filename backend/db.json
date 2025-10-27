@@ -118,11 +118,13 @@
       "verified": false
     },
     {
-      "id": "1761577827019",
+      "id": "1761580014000",
       "username": "usertest",
       "password": "user1234",
-      "phone": "0123456781",
+      "fullName": "Nguyễn Minh Quốc",
+      "birthYear": 2005,
       "email": "nguyenminhquoctft81@gmail.com",
+      "phone": "0978870124",
       "role": "user",
       "blocked": false,
       "verified": true
