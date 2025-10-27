@@ -1,46 +1,48 @@
 import React from 'react';
 import './Footer.css';
-import { FaFacebook } from 'react-icons/fa';
 import {
-  FaSquareGooglePlus,
-  FaSquareInstagram,
-  FaSquareXTwitter,
-} from 'react-icons/fa6';
+  FaFacebook,
+  FaGooglePlusSquare, 
+  FaInstagramSquare,  
+  FaTwitterSquare, 
+} from 'react-icons/fa';
+
+
 
 const Footer = () => {
 
   const founders = [
     {
       name: '1',
-      img: '/images/avt1.jpg',
+      img: '/images/person_1.jpg',
     },
     {
       name: '2',
-      img: '/images/avt2.jpg',
+      img: '/images/person_2.jpg',
     },
     {
       name: '3',
-      img: '/images/avt3.jpg',
+      img: '/images/person_3.jpg',
     },
     {
       name: '4',
-      img: '/images/avt4.jpg',
+      img: '/images/person_4.jpg',
     },
     {
       name: '5',
-      img: '/images/avt5.jpg',
+      img: '/images/person_5.jpg',
     },
     {
       name: '6',
-      img: '/images/avt6.jpg',
+      img: '/images/person_1.jpg',
     },
     {
       name: '7',
-      img: '/images/avt7.jpg',
+      img: '/images/person_2.jpg',
     },
     { 
       name: '8',
-      img: '/images/avt8.jpg',
+      img: '/images/person_3.jpg',
     },
   ];
   return (
@@ -65,8 +67,8 @@ const Footer = () => {
               <ul className="list-unstyled">
                 <li><a href="#">Giới thiệu</a></li>
                 <li><a href="#">Trợ giúp</a></li>
-                <li><a>Địa chỉ: 123 Đường ABC, Quận 1, TP.HCM</a></li>
-                <li><a>Liên hệ: 0123456789</a></li>
+                <li><a>Địa chỉ: 268 Lý Thường Kiệt, phường Diên Hồng, Thành phố Hồ Chí Minh</a></li>
+                <li><a>Hiệu trưởng: GS.TS. Mai Thanh Phong</a></li>
               </ul>
             </div>
 
@@ -74,10 +76,10 @@ const Footer = () => {
             <div className="col-md-3 mb-4">
               <h6 className="footer-title">Tham gia trên</h6>
               <ul className="list-unstyled">
-                <li><a href="https://www.facebook.com/"><FaFacebook className="me-2" />Facebook</a></li>
-                <li><a href="https://www.instagram.com/"><FaSquareInstagram className="me-2" />Instagram</a></li>
-                <li><a href="https://www.google.com/"><FaSquareGooglePlus className="me-2" />Google</a></li>
-                <li><a href="https://www.twitter.com/"><FaSquareXTwitter className="me-2" />Twitter</a></li>
+                <li><a href="https://www.facebook.com/groups/2725023304306622"><FaFacebook className="me-2" />Facebook</a></li>
+                <li><a href="https://www.instagram.com/"><FaInstagramSquare className="me-2" />Instagram</a></li>
+                <li><a href="https://hcmut.edu.vn/"><FaGooglePlusSquare className="me-2" />Google</a></li>
+                <li><a href="https://www.twitter.com/"><FaTwitterSquare className="me-2" />Twitter</a></li>
               </ul>
             </div>
 
