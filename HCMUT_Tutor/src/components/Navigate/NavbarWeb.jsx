@@ -106,25 +106,36 @@ const NavbarWeb = () => {
           </div>
           <div className="d-flex align-items-center">
             <div className="nav-links d-none d-md-flex align-items-center me-3">
-              <NavLink to="/home" className="nav-link">
-                Trang chủ
-              </NavLink>
-              {/* Role-based navigation: Tutor, User, or Guest */}
-              {isLoggedIn && role === "tutor" ? (
+              {/* Role-based navigation: Admin, Tutor, User, or Guest */}
+              {isLoggedIn && role === "admin" ? (
                 <>
-                  <NavLink to="/tutor/dashboard" className="nav-link">
-                    Bảng điều khiển
+                  <NavLink to="/home" className="nav-link">
+                    Trang chủ
                   </NavLink>
-                  <NavLink to="/tutor/appointments" className="nav-link">
-                    Quản lý lịch hẹn
+                  <NavLink to="/profile" className="nav-link">
+                    Xem hồ sơ
                   </NavLink>
-                  <NavLink to="/tutor/students" className="nav-link">
+                  <NavLink to="/menu" className="nav-link">
+                    Xem khóa học
+                  </NavLink>
+                  <NavLink to="/users" className="nav-link">
+                    Báo cáo và thống kê
+                  </NavLink>
+                </>
+              ) : isLoggedIn && role === "tutor" ? (
+                <>
+                  <NavLink to="/home" className="nav-link">
+                    Trang chủ
+                  </NavLink>
+                  <NavLink to="/" className="nav-link">
+                    Khóa học của tôi
+                  </NavLink>
+                  <NavLink to="/" className="nav-link">
+                    Đăng ký mở lớp
+                  </NavLink>
+                  <NavLink to="/" className="nav-link">
                     Sinh viên của tôi
                   </NavLink>
-                  <NavLink to="/tutor/resources" className="nav-link">
-                    Tài liệu
-                  </NavLink>
-                  {/* Bell notifications for tutor */}
                   <div className="position-relative ms-2">
                     <button
                       className="btn btn-link text-light p-0"
@@ -200,14 +211,14 @@ const NavbarWeb = () => {
                 </>
               ) : isLoggedIn && role === "user" ? (
                 <>
-                  <NavLink to="/dashboard" className="nav-link">
-                    Bảng điều khiển
+                  <NavLink to="/home" className="nav-link">
+                    Trang chủ
                   </NavLink>
                   <NavLink to="/my-sessions" className="nav-link">
-                    Buổi học của tôi
+                    Khóa học của tôi
                   </NavLink>
                   <NavLink to="/find-tutor" className="nav-link">
-                    Tìm Tutor
+                    Đăng ký môn học
                   </NavLink>
                   <NavLink to="/resources" className="nav-link">
                     Tài liệu
@@ -297,6 +308,9 @@ const NavbarWeb = () => {
                 </>
               ) : (
                 <>
+                  <NavLink to="/home" className="nav-link">
+                    Trang chủ
+                  </NavLink>
                   <NavLink to="/tutorials" className="nav-link">
                     Chương trình
                   </NavLink>

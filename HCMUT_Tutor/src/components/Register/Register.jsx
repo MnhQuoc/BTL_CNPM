@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
 import { useNavigate } from 'react-router';
@@ -134,17 +134,34 @@ function Register() {
 
       // Gửi email xác nhận
       const confirmationLink = `http://localhost:5173/verify/${newUserId}`;
+
+      const templateParams = {
+        to_name: username,         
+        to_email: email,
+        username: username,
+        email: email,
+        userId: newUserId.toString(),
+        verification_link: confirmationLink
+      };
+
+      console.log('Sending email with params:', templateParams);
+
       await emailjs.send(
-        'service_2o1ywkk',
-        'template_m0x0lah',
-        {
-          username,
-          email,
-          userId: newUserId,
-          confirmationLink,
-        },
-        'ZcmKYaJ0MqbWwcw2h'
-      );
+        'service_vab1tb9', 
+        'template_u7xxfg4', 
+        templateParams, 
+        'E_5vA24w2mZlesP04'
+      ).then((response) => {
+        console.log('✅ Email sent successfully!', response);
+        console.log('Response status:', response.status);
+        console.log('Response text:', response.text);
+      }).catch((error) => {
+        console.error('❌ EmailJS Error:', error);
+        console.error('Error code:', error.status);
+        console.error('Error text:', error.text);
+        console.error('Full error:', JSON.stringify(error, null, 2));
+        // Vẫn cho phép đăng ký thành công ngay cả khi email lỗi
+      });
 
       setMessage('Đăng ký thành công! Vui lòng kiểm tra email để xác nhận.');
       setForm({ username: '', password: '', phone: '', email: '' });
