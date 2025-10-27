@@ -52,7 +52,7 @@ Backend cung cấp các endpoint sau:
 
 File `db.json` chứa cơ sở dữ liệu giả lập với các bảng:
 - `users`: Thông tin người dùng
-- `requests`: Yêu cầu xác thực người bán (merchant)
+- `requests`: Yêu cầu trở thành tutor
 
 ## Chú ý
 
