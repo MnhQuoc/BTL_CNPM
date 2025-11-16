@@ -12,7 +12,8 @@ const AddFoodItem = () => {
     prepareTime: '',
     note: '',
     serviceFee: '',
-    tag: ''
+    tag: '',
+    openTime: ''
   });
 
   const [message, setMessage] = useState('');
@@ -51,6 +52,23 @@ const AddFoodItem = () => {
     e.preventDefault();
 
     try {
+      // Lấy thông tin user hiện tại
+      const userStr = localStorage.getItem('user');
+      if (!userStr) {
+        setMessage('❌ Vui lòng đăng nhập để thêm môn học!');
+        setIsSuccess(false);
+        setTimeout(() => setMessage(''), 4000);
+        return;
+      }
+
+      const user = JSON.parse(userStr);
+      if (user.role !== 'tutor') {
+        setMessage('❌ Chỉ tutor mới có thể thêm môn học!');
+        setIsSuccess(false);
+        setTimeout(() => setMessage(''), 4000);
+        return;
+      }
+
       let imageUrl = "";
       if (imagefood) {
         imageUrl = await uploadToCloudinary(imagefood);
@@ -62,10 +80,18 @@ const AddFoodItem = () => {
         serviceFee: parseFloat(formData.serviceFee) || 0,
         tag: formData.tag.split(',').map(tag => tag.trim()),
         image: imageUrl,
+        tutorId: user.id.toString(), // Tự động gán tutorId từ user đăng nhập
+        openTime: formData.openTime || 'Chưa cập nhật',
+        status: 'Còn trống',
+        rating: 0,
+        location: '',
+        phone: user.phone || '',
+        category: '',
+        restname: user.name || user.username || ''
       };
 
       await axios.post('http://localhost:3001/courses', data);
-      setMessage('✅ Đã thêm món ăn thành công!');
+      setMessage('✅ Đã thêm môn học thành công!');
       setIsSuccess(true);
 
       setFormData({
@@ -75,21 +101,27 @@ const AddFoodItem = () => {
         prepareTime: '',
         note: '',
         serviceFee: '',
-        tag: ''
+        tag: '',
+        openTime: ''
       });
       setImagefood(null);
       setTimeout(() => setMessage(''), 4000);
     } catch (error) {
-      console.error('❌ Lỗi khi thêm món ăn:', error);
-      setMessage('❌ Thêm món ăn thất bại!');
+      console.error('❌ Lỗi khi thêm môn học:', error);
+      const errorMessage = error.response?.data?.error || '❌ Thêm môn học thất bại!';
+      setMessage(errorMessage);
       setIsSuccess(false);
-      setTimeout(() => setMessage(''), 4000);
+      setTimeout(() => setMessage(''), 6000);
     }
   };
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center mb-4">Thêm Món Ăn Mới</h2>
+      <h2 className="text-center mb-4">Thêm Môn Học Mới</h2>
+
+      <div className="alert alert-info mb-3" role="alert">
+        <strong>Lưu ý:</strong> Mỗi tutor chỉ được dạy 1 môn học. Bạn có thể thêm nhiều khung giờ khác nhau cho cùng một môn học.
+      </div>
 
       {message && (
         <div
@@ -102,12 +134,27 @@ const AddFoodItem = () => {
 
       <form onSubmit={handleSubmit} className="text-start">
         <div className="mb-3">
-          <label htmlFor="name" className="form-label">Tên món ăn (*)</label>
+          <label htmlFor="name" className="form-label">Tên môn học (*)</label>
           <input type="text" className="form-control" id="name" value={formData.name} onChange={handleChange} required />
+          <small className="form-text text-muted">Nếu bạn đã có môn học khác, vui lòng sử dụng cùng tên môn học và thêm khung giờ mới.</small>
         </div>
 
         <div className="mb-3">
-          <label htmlFor="address" className="form-label">Địa chỉ (*)</label>
+          <label htmlFor="openTime" className="form-label">Khung giờ dạy (*)</label>
+          <input 
+            type="text" 
+            className="form-control" 
+            id="openTime" 
+            value={formData.openTime} 
+            onChange={handleChange} 
+            placeholder="Ví dụ: Thứ 2, 4, 6 - 7:00-9:00"
+            required 
+          />
+          <small className="form-text text-muted">Nhập khung giờ dạy cho môn học này (ví dụ: Thứ 2, 4, 6 - 7:00-9:00)</small>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="address" className="form-label">Địa chỉ phòng học (*)</label>
           <input type="text" className="form-control" id="address" value={formData.address} onChange={handleChange} required />
         </div>
 
@@ -167,7 +214,7 @@ const AddFoodItem = () => {
         </div >
         <div className="d-flex justify-content-between gap-2 mt-3">
           <button type="submit" className="btn btn-success flex">
-              Thêm món ăn
+              Thêm môn học
           </button>
           <button type="button" className="btn btn-secondary flex" onClick={() => navigate('/listfood')}>
               Quay lại

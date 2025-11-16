@@ -27,6 +27,9 @@ import FoodDetail from './pages/FoodDetail/FoodDetail.jsx';
 import Checkout from './pages/Checkout/Checkout.jsx';
 import { CartProvider } from './contexts/CartContext.jsx';
 import Cart from './pages/Cart/Cart.jsx';
+import MySessions from './pages/MySessions/MySessions.jsx';
+import FindTutor from './pages/FindTutor/FindTutor.jsx';
+import OpenCourse from './pages/OpenCourse/OpenCourse.jsx';
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -110,6 +113,9 @@ function App() {
             <Route path="/courses/:id" element={<FoodDetail />} />
             <Route path="cart" element={<Cart />} />
             <Route path="checkout" element={<Checkout />} />
+            <Route path="my-sessions" element={<MySessions />} />
+            <Route path="find-tutor" element={<FindTutor />} />
+            <Route path="open-course" element={<OpenCourse />} />
           </Route>
         </Routes>
       </CartProvider>

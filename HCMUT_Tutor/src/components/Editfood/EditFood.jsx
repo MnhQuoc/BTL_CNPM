@@ -77,34 +77,51 @@ const FoodEdit = () => {
       setTimeout(() => navigate('/listfood'), 1500);
     } catch (err) {
       console.error('Lỗi khi cập nhật:', err);
-      setMessage(<><FaTimesCircle className="me-2" /> Cập nhật thất bại!</>);
+      const errorMessage = err.response?.data?.error || 'Cập nhật thất bại!';
+      setMessage(<><FaTimesCircle className="me-2" /> {errorMessage}</>);
       setIsSuccess(false);
     }
 
-    setTimeout(() => setMessage(''), 4000);
+    setTimeout(() => setMessage(''), 6000);
   };
 
   if (!food) return <div className="text-center mt-5">Đang tải dữ liệu...</div>;
 
   return (
     <div className="container mt-5">
-      <h2 className="text-center">Chỉnh sửa món ăn</h2>
+      <h2 className="text-center">Chỉnh sửa môn học</h2>
+
+      <div className="alert alert-warning mb-3" role="alert">
+        <strong>Lưu ý:</strong> Mỗi tutor chỉ được dạy 1 môn học. Bạn không thể đổi tên môn học nếu đã có môn học khác.
+      </div>
 
       {message && (
         <div className={`alert ${isSuccess ? 'alert-success' : 'alert-danger'}`}>{message}</div>
       )}
 <div className="mb-3">
-        <label className="form-label">Tên món ăn</label>
+        <label className="form-label">Tên môn học</label>
         <input id="name" value={food.name} onChange={handleChange} className="form-control" />
+        <small className="form-text text-muted">Không thể đổi sang môn học khác nếu bạn đã có môn học khác.</small>
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Địa chỉ</label>
+        <label className="form-label">Khung giờ dạy</label>
+        <input 
+          id="openTime" 
+          value={food.openTime || ''} 
+          onChange={handleChange} 
+          className="form-control"
+          placeholder="Ví dụ: Thứ 2, 4, 6 - 7:00-9:00"
+        />
+      </div>
+
+      <div className="mb-3">
+        <label className="form-label">Địa chỉ phòng học</label>
         <input id="address" value={food.address} onChange={handleChange} className="form-control" />
       </div>
 
       <div className="mb-3">
-        <label className="form-label">Ảnh món ăn</label>
+        <label className="form-label">Ảnh môn học</label>
         {image ? (
           <div>
             <img src={URL.createObjectURL(image)} style={{ maxWidth: 200 }} alt="preview" />

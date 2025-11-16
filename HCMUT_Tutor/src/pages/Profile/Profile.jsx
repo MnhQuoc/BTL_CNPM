@@ -10,6 +10,7 @@ const Profile = () => {
     address: ''
   });
   const [message, setMessage] = useState('');
+  const [userRole, setUserRole] = useState('');
   const navigate = useNavigate();
 
   // Kiểm tra xem thông tin có được điền đầy đủ không
@@ -29,6 +30,7 @@ const Profile = () => {
     const fetchUserData = async () => {
       try {
         const user = JSON.parse(userStr);
+        setUserRole(user.role || ''); // Lưu role của user
         const response = await fetch(`http://localhost:3001/users/${user.id}`);
         if (response.ok) {
           const data = await response.json();
@@ -167,13 +169,15 @@ const Profile = () => {
                   >
                     Cập nhật thông tin
                   </button>
-                  <button 
-                    type="button" 
-                    className="btn btn-success flex-grow-1 mx-2"
-                    onClick={() => navigate('/signup')}
-                  >
-                    Trở thành Tutor
-                  </button>
+                  {userRole !== 'tutor' && (
+                    <button 
+                      type="button" 
+                      className="btn btn-success flex-grow-1 mx-2"
+                      onClick={() => navigate('/signup')}
+                    >
+                      Trở thành Tutor
+                    </button>
+                  )}
                 </div>
               </form>
             </div>

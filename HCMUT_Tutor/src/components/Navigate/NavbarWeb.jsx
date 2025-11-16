@@ -95,7 +95,7 @@ const NavbarWeb = () => {
   };
 
   return (
-    <header className="hero-header">
+    <header className={`hero-header ${isLoggedIn ? 'logged-in' : ''}`}>
       <nav className="top-nav">
         <Container className="d-flex align-items-center justify-content-between">
           <div className="d-flex align-items-center">
@@ -127,14 +127,11 @@ const NavbarWeb = () => {
                   <NavLink to="/home" className="nav-link">
                     Trang chủ
                   </NavLink>
-                  <NavLink to="/" className="nav-link">
+                  <NavLink to="/my-sessions" className="nav-link">
                     Khóa học của tôi
                   </NavLink>
-                  <NavLink to="/" className="nav-link">
+                  <NavLink to="/open-course" className="nav-link">
                     Đăng ký mở lớp
-                  </NavLink>
-                  <NavLink to="/" className="nav-link">
-                    Sinh viên của tôi
                   </NavLink>
                   <div className="position-relative ms-2">
                     <button
@@ -220,10 +217,7 @@ const NavbarWeb = () => {
                   <NavLink to="/find-tutor" className="nav-link">
                     Đăng ký môn học
                   </NavLink>
-                  <NavLink to="/resources" className="nav-link">
-                    Tài liệu
-                  </NavLink>
-                  {/* Bell notifications placed after Tài liệu */}
+ 
                   <div className="position-relative ms-2">
                     <button
                       className="btn btn-link text-light p-0"
@@ -352,7 +346,7 @@ const NavbarWeb = () => {
                     to="/profile"
                     className="text-dark"
                   >
-                    Tài khoản
+                    Hồ sơ
                   </NavDropdown.Item>
                 )}
                 {role === "tutor" && (
@@ -361,7 +355,7 @@ const NavbarWeb = () => {
                     to="/orderlist"
                     className="text-dark"
                   >
-                    Quản lý đơn hàng
+                    Khóa học đã mở
                   </NavDropdown.Item>
                 )}
                 {role === "admin" && (
@@ -383,13 +377,15 @@ const NavbarWeb = () => {
         </Container>
       </nav>
 
-      <div className="hero-content">
-        <Container>
-          <h1 className="hero-title">
-            <strong>Tutor Support System</strong>
-          </h1>
-        </Container>
-      </div>
+      {!isLoggedIn && (
+        <div className="hero-content">
+          <Container>
+            <h1 className="hero-title">
+              <strong>Tutor Support System</strong>
+            </h1>
+          </Container>
+        </div>
+      )}
     </header>
   );
 };

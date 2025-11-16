@@ -56,6 +56,20 @@
     color: #fff;
 }
 
+/* Hide hero background when logged in */
+.hero-header.logged-in {
+    background-image: none;
+    background-color: #282828;
+}
+
+.hero-header.logged-in::before {
+    display: none;
+}
+
+.hero-header.logged-in .top-nav {
+    background-color: #282828;
+}
+
 .hero-header::before {
     content: '';
     position: absolute;
@@ -67,7 +81,7 @@
 .top-nav {
     position: relative;
     z-index: 2;
-    padding: 18px 0;
+    padding: 12px 0;
 }
 
 /* tighten the container inside top-nav so left/right gaps are smaller */
@@ -89,6 +103,11 @@
     font-weight: 700;
     color: #fff;
     text-decoration: none;
+}
+
+.top-nav .logo {
+    height: 3em;
+    padding: 0.5em;
 }
 
 .top-nav .nav-links .nav-link {
