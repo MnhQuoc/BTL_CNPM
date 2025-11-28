@@ -1,0 +1,675 @@
+{
+  "users": [
+    {
+      "id": "1745338495664",
+      "username": "admin1111",
+      "email": "albumanh1234@gmail.com",
+      "phone": "02343943941",
+      "password": "admin",
+      "role": "admin",
+      "blocked": false,
+      "verified": true
+    },
+    {
+      "id": "1745293587693",
+      "username": "nhanhnhen",
+      "email": "nhommotduan@gmail.com",
+      "phone": "0123456789",
+      "password": "nhanhnhen1",
+      "role": "user",
+      "blocked": false,
+      "verified": true,
+      "name": "Minh Quốc",
+      "city": "sss",
+      "district": "sss",
+      "ward": "ss",
+      "streetAddress": "ss",
+      "address": "ss, ss, sss, sss",
+      "addresses": [
+        {
+          "id": 1746878288389,
+          "name": "s",
+          "phone": "0978870124",
+          "address": "2906, Nam Hoa, sss, A1"
+        },
+        {
+          "id": 1746878300132,
+          "name": "s",
+          "phone": "09788701241",
+          "address": "2906, Nam Hoa, sss, A1"
+        }
+      ]
+    },
+    {
+      "id": "1745312310240",
+      "username": "hoangphuc1234",
+      "email": "lhphuc822004@gmail.com",
+      "phone": "09898645881",
+      "password": "phuc2004@",
+      "role": "user",
+      "blocked": false,
+      "verified": true,
+      "address": "Cầu Giấy",
+      "time": "8AM-12PM",
+      "restname": "Quán Anh Béo"
+    },
+    {
+      "id": "1745349964177",
+      "username": "usertesst2",
+      "email": "albumanh1234@gmail.com",
+      "phone": "01248124124",
+      "password": "user1234",
+      "role": "user",
+      "blocked": false,
+      "verified": true,
+      "restname": "Ngõ Nhỏ Quán",
+      "address": "Quan Hoa",
+      "time": "9PM-5AM"
+    },
+    {
+      "id": "1746533121654",
+      "username": "nhanhnhen12",
+      "password": "nhahnhen1",
+      "phone": "01234567891",
+      "email": "nhomhaiduan@gmail.com",
+      "role": "user",
+      "blocked": false,
+      "verified": true
+    },
+    {
+      "id": "1745348611792",
+      "username": "usertest1",
+      "email": "albumanh1234@gmail.com",
+      "phone": "02149293486",
+      "password": "user1234",
+      "role": "tutor",
+      "blocked": false,
+      "verified": true,
+      "restname": "Quán Anh Béo 22",
+      "address": "Cầu Giấy",
+      "time": "8AM-12PM"
+    },
+    {
+      "id": "1745421209258",
+      "username": "usertest3",
+      "email": "albumanh1234@gmail.com",
+      "phone": "0182381238",
+      "password": "user1234",
+      "role": "tutor",
+      "blocked": false,
+      "verified": true,
+      "name": "Tuấn",
+      "city": "Hà Nội",
+      "district": "Cầu Giayas",
+      "ward": "Quan Hoa",
+      "streetAddress": "Số 16",
+      "address": "Số 16, Quan Hoa, Cầu Giayas, Hà Nội",
+      "restname": "Ngõ Nhỏ Quán 2",
+      "time": "11AM-2PM"
+    },
+    {
+      "id": "1760514427208",
+      "username": "4545454545",
+      "password": "quoc851032",
+      "phone": "0123456781",
+      "email": "aaa@gmail.com",
+      "role": "user",
+      "blocked": false,
+      "verified": false
+    },
+    {
+      "id": "1761580014000",
+      "username": "usertest",
+      "password": "user1234",
+      "fullName": "Nguyễn Minh Quốc",
+      "birthYear": 2005,
+      "email": "nguyenminhquoctft81@gmail.com",
+      "phone": "0978870124",
+      "role": "user",
+      "blocked": false,
+      "verified": true
+    },
+    {
+      "id": "1762694038174",
+      "username": "test1234",
+      "password": "test1234",
+      "fullName": "Nguyễn Văn A",
+      "birthYear": 2005,
+      "email": "nguyenminhquoctft81@gmail.com",
+      "phone": "0978870124",
+      "role": "user",
+      "blocked": false,
+      "verified": false
+    },
+    {
+      "id": "1762694112409",
+      "username": "test1235",
+      "password": "test1235",
+      "fullName": "ABC",
+      "birthYear": 2005,
+      "email": "nguyenminhquoc812005@gmail.com",
+      "phone": "0978870124",
+      "role": "user",
+      "blocked": false,
+      "verified": true
+    }
+  ],
+  "requests": [
+    {
+      "id": "1",
+      "userId": "1745348611792",
+      "status": "rejected",
+      "role": "tutor",
+      "verified": false
+    },
+    {
+      "id": "2",
+      "userId": "1745348611792",
+      "status": "rejected",
+      "role": "tutor",
+      "verified": false
+    },
+    {
+      "id": "3",
+      "userId": "1745348611792",
+      "status": "approved",
+      "role": "tutor",
+      "verified": false
+    },
+    {
+      "id": "4",
+      "userId": "1745348611792",
+      "status": "rejected",
+      "role": "tutor",
+      "verified": false
+    },
+    {
+      "userId": "1745293587693",
+      "status": "rejected",
+      "role": "tutor",
+      "verified": false,
+      "id": "5"
+    },
+    {
+      "userId": "1745349964177",
+      "status": "rejected",
+      "role": "tutor",
+      "verified": false,
+      "id": "6"
+    },
+    {
+      "userId": "1745421209258",
+      "status": "approved",
+      "role": "tutor",
+      "verified": false,
+      "id": "7"
+    },
+    {
+      "id": "36a0",
+      "userId": "1746879405498",
+      "status": "approved",
+      "role": "tutor",
+      "verified": false
+    }
+  ],
+  "orders": [
+    {
+      "id": "1",
+      "userId": "1745293587693",
+      "username": "nhanhnhen",
+      "tutorId": "1745421209258",
+      "items": [
+        {
+          "foodId": "2",
+          "quantity": 2
+        },
+        {
+          "foodId": "2",
+          "quantity": 2
+        }
+      ],
+      "totalAmount": 139399,
+      "status": "Chờ nhận hàng",
+      "createdAt": "2025-05-01T02:02:43.058Z"
+    },
+    {
+      "id": "2",
+      "userId": "1745293587693",
+      "username": "nhanhnhen",
+      "tutorId": "1745348611792",
+      "items": [
+        {
+          "foodId": "2",
+          "quantity": 3
+        },
+        {
+          "foodId": "2",
+          "quantity": 2
+        }
+      ],
+      "totalAmount": 156635,
+      "status": "Chờ nhận hàng",
+      "createdAt": "2025-05-02T02:02:43.058Z"
+    },
+    {
+      "id": "3",
+      "userId": "1745293587693",
+      "username": "nhanhnhen",
+      "tutorId": "1745348611792",
+      "items": [
+        {
+          "foodId": "2",
+          "quantity": 3
+        },
+        {
+          "foodId": "2",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 194515,
+      "status": "Chờ nhận hàng",
+      "createdAt": "2025-05-01T02:02:43.058Z"
+    },
+    {
+      "id": "4",
+      "userId": "1745293587693",
+      "username": "nhanhnhen",
+      "tutorId": "1745348611792",
+      "items": [
+        {
+          "foodId": "2",
+          "quantity": 2
+        },
+        {
+          "foodId": "2",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 83643,
+      "status": "Chờ nhận hàng",
+      "createdAt": "2025-05-02T02:02:43.058Z"
+    },
+    {
+      "id": "5",
+      "userId": "1745293587693",
+      "username": "nhanhnhen",
+      "tutorId": "1745421209258",
+      "items": [
+        {
+          "foodId": "1",
+          "quantity": 1
+        },
+        {
+          "foodId": "2",
+          "quantity": 2
+        }
+      ],
+      "totalAmount": 176512,
+      "status": "Chờ nhận hàng",
+      "createdAt": "2025-05-01T02:02:43.058Z"
+    },
+    {
+      "id": "6",
+      "userId": "1745293587693",
+      "username": "nhanhnhen",
+      "tutorId": "1745348611792",
+      "items": [
+        {
+          "foodId": "1",
+          "quantity": 3
+        },
+        {
+          "foodId": "1",
+          "quantity": 2
+        }
+      ],
+      "totalAmount": 145141,
+      "status": "Chờ nhận hàng",
+      "createdAt": "2025-04-28T02:02:43.058Z"
+    },
+    {
+      "id": "7",
+      "userId": "1745293587693",
+      "username": "nhanhnhen",
+      "tutorId": "1745348611792",
+      "items": [
+        {
+          "foodId": "2",
+          "quantity": 1
+        },
+        {
+          "foodId": "2",
+          "quantity": 2
+        }
+      ],
+      "totalAmount": 114150,
+      "status": "Chờ nhận hàng",
+      "createdAt": "2025-05-02T02:02:43.058Z"
+    },
+    {
+      "id": "8",
+      "userId": "1745293587693",
+      "username": "nhanhnhen",
+      "tutorId": "1745348611792",
+      "items": [
+        {
+          "foodId": "1",
+          "quantity": 1
+        },
+        {
+          "foodId": "2",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 105476,
+      "status": "Chờ nhận hàng",
+      "createdAt": "2025-04-27T02:02:43.058Z"
+    },
+    {
+      "id": "9",
+      "userId": "1745293587693",
+      "username": "nhanhnhen",
+      "tutorId": "1745348611792",
+      "items": [
+        {
+          "foodId": "2",
+          "quantity": 1
+        },
+        {
+          "foodId": "2",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 108303,
+      "status": "Chờ nhận hàng",
+      "createdAt": "2025-04-27T02:02:43.058Z"
+    },
+    {
+      "id": "10",
+      "userId": "1745293587693",
+      "username": "nhanhnhen",
+      "tutorId": "1745421209258",
+      "items": [
+        {
+          "foodId": "2",
+          "quantity": 3
+        },
+        {
+          "foodId": "1",
+          "quantity": 2
+        }
+      ],
+      "totalAmount": 151161,
+      "status": "Chờ nhận hàng",
+      "createdAt": "2025-04-27T02:02:43.058Z"
+    },
+    {
+      "id": "62d9",
+      "userId": "1746879405498",
+      "items": [
+        {
+          "id": "1",
+          "name": "Bánh mì thịt nguội",
+          "image": "https://tse4.mm.bing.net/th?id=OIP.t47v8dgxjhC1uFaYe4cSjAHaHa&w=474&h=474&c=7",
+          "restname": "Quán Anh Béo 22",
+          "quantity": 1
+        }
+      ],
+      "address": "ssss | ssss | sss, Nam Hoa, A1, HCM",
+      "paymentMethod": "COD",
+      "note": "",
+      "subtotal": 25000,
+      "serviceFee": 15000,
+      "deliveryFee": 25000,
+      "discount": 0,
+      "total": 65000,
+      "status": "pending",
+      "createdAt": "2025-05-10T12:19:14.717Z"
+    }
+  ],
+  "testimonials": [
+    {
+      "id": "1",
+      "title": "Excellent Teacher!",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum",
+      "name": "Mike Fisher",
+      "semester": "HK223",
+      "avatar": "ảnh",
+      "rating": 4
+    },
+    {
+      "id": "2",
+      "title": "Best Video Tutorial!",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum",
+      "name": "Jean Stanley",
+      "semester": "HK232",
+      "avatar": "ảnh",
+      "rating": 5
+    },
+    {
+      "id": "3",
+      "title": "Easy to Understand!",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, deserunt eveniet veniam. Ipsam, nam, voluptatum",
+      "name": "Katie Rose",
+      "semester": "HK241",
+      "avatar": "ảnh",
+      "rating": 4
+    }
+  ],
+  "courses": [
+    {
+      "id": "1",
+      "name": "Công nghệ phần mềm",
+      "image": "images/courses/1.png",
+      "rating": 4.8,
+      "location": "TP. Hồ Chí Minh",
+      "address": "B1-101",
+      "phone": "0901234567",
+      "openTime": "Thứ 2, 4, 6 - 7:00-9:00",
+      "status": "Còn trống",
+      "prepareTime": 10,
+      "note": "",
+      "serviceFee": 0,
+      "tag": [
+        "1234567"
+      ],
+      "tutorId": "1745348611792",
+      "restname": "Nguyễn Văn A"
+    },
+    {
+      "id": "2",
+      "name": "Mạng máy tính",
+      "image": "images/courses/2.png",
+      "rating": 4.7,
+      "location": "Cần Thơ",
+      "address": "C2-205",
+      "phone": "0902456789",
+      "openTime": "Thứ 3, 5 - 8:00-10:00",
+      "status": "Full",
+      "prepareTime": 10,
+      "note": "",
+      "serviceFee": 0,
+      "tag": [
+        1234567
+      ],
+      "tutorId": "1745421209258",
+      "restname": "Trần Thị B"
+    },
+    {
+      "id": "3",
+      "name": "Hệ cơ sở dữ liệu",
+      "image": "images/courses/3.png",
+      "rating": 4.9,
+      "location": "Đà Nẵng",
+      "address": "A3-301",
+      "phone": "0909988776",
+      "openTime": "Thứ 2, 4 - 9:00-11:00",
+      "status": "Còn trống",
+      "prepareTime": 10,
+      "note": "",
+      "serviceFee": 0,
+      "tag": [
+        1234567
+      ],
+      "tutorId": "1745348611792",
+      "restname": "Lê Văn C"
+    },
+    {
+      "id": "4",
+      "name": "Hóa đại cương",
+      "image": "images/courses/4.png",
+      "rating": 5,
+      "location": "Hà Nội",
+      "address": "D1-102",
+      "phone": "0912345678",
+      "openTime": "Thứ 3, 5, 7 - 7:30-9:30",
+      "status": "Còn trống",
+      "prepareTime": 10,
+      "note": "",
+      "serviceFee": 0,
+      "tag": [
+        1234567
+      ],
+      "tutorId": "1745421209258",
+      "restname": "Phạm Thị D"
+    },
+    {
+      "id": "5",
+      "name": "Chủ nghĩa Mác-Lênin",
+      "image": "images/courses/5.png",
+      "rating": 4.6,
+      "location": "Hà Nội",
+      "address": "B2-203",
+      "phone": "0987123456",
+      "openTime": "Thứ 2, 6 - 8:30-10:30",
+      "status": "Full",
+      "prepareTime": 10,
+      "note": "",
+      "serviceFee": 0,
+      "tag": [
+        1234567
+      ],
+      "tutorId": "1745348611792",
+      "restname": "Hoàng Văn E"
+    },
+    {
+      "id": "6",
+      "name": "Cấu trúc dữ liệu và giải thuật",
+      "image": "images/courses/6.png",
+      "rating": 4.5,
+      "location": "TP. Hồ Chí Minh",
+      "address": "C1-104",
+      "phone": "0978765432",
+      "openTime": "Thứ 4, 6 - 9:30-11:30",
+      "status": "Còn trống",
+      "prepareTime": 10,
+      "note": "",
+      "serviceFee": 0,
+      "tag": [
+        1234567
+      ],
+      "tutorId": "1745421209258",
+      "restname": "Võ Thị F"
+    },
+    {
+      "id": "7",
+      "name": "Xấc suất thống kê",
+      "image": "images/courses/7.png",
+      "rating": 5,
+      "location": "TP. Hồ Chí Minh",
+      "address": "A2-201",
+      "phone": "0905555555",
+      "openTime": "Thứ 3, 5 - 10:00-12:00",
+      "status": "Còn trống",
+      "prepareTime": 10,
+      "note": "",
+      "serviceFee": 0,
+      "tag": [
+        1234567
+      ],
+      "tutorId": "1745348611792",
+      "restname": "Đặng Văn G"
+    },
+    {
+      "id": "8",
+      "name": "Giải tích",
+      "image": "images/courses/8.png",
+      "rating": 4.7,
+      "location": "Bình Dương",
+      "address": "D2-302",
+      "phone": "0933333333",
+      "openTime": "Thứ 2, 4 - 11:00-13:00",
+      "status": "Full",
+      "prepareTime": 10,
+      "note": "",
+      "serviceFee": 0,
+      "tag": [
+        1234567
+      ],
+      "tutorId": "1745421209258",
+      "restname": "Bùi Thị H"
+    },
+    {
+      "id": "9",
+      "name": "Cấu trúc rời rạc",
+      "image": "images/courses/9.png",
+      "rating": 4.8,
+      "location": "Long An",
+      "address": "B3-103",
+      "phone": "0966666666",
+      "openTime": "Thứ 5, 7 - 8:00-10:00",
+      "status": "Còn trống",
+      "prepareTime": 10,
+      "note": "",
+      "serviceFee": 0,
+      "tag": [
+        1234567
+      ],
+      "tutorId": "1745348611792",
+      "restname": "Ngô Văn I"
+    },
+    {
+      "id": "10",
+      "name": "Vật lý đại cương",
+      "image": "images/courses/10.png",
+      "rating": 4.9,
+      "location": "Cà Mau",
+      "address": "C3-204",
+      "phone": "0944444444",
+      "openTime": "Thứ 2, 4, 6 - 9:00-11:00",
+      "status": "Còn trống",
+      "prepareTime": 10,
+      "note": "",
+      "serviceFee": 0,
+      "tag": [
+        1234567
+      ],
+      "tutorId": "1745421209258",
+      "restname": "Dương Thị K"
+    }
+  ],
+  "tutorCourses": [
+    {
+      "id": "f6fa",
+      "name": "Công nghệ phần mềm",
+      "tutorId": "1745421209258",
+      "openTime": "Thứ 2 - 7:00-9:00",
+      "startDate": "2025-11-17",
+      "endDate": "2025-11-27",
+      "learningMethod": "online",
+      "status": "Còn trống",
+      "rating": 0,
+      "image": "images/courses/default.png",
+      "category": "",
+      "location": "",
+      "address": "",
+      "phone": "",
+      "restname": "usertest3",
+      "prepareTime": 0,
+      "serviceFee": 0,
+      "note": "",
+      "tag": [],
+      "createdAt": "2025-11-16T16:36:01.945Z"
+    }
+  ]
+}
