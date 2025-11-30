@@ -13,7 +13,7 @@ import {
   FaSearch,
   FaShoppingCart,
 } from "react-icons/fa";
-import { useNavigate, NavLink } from "react-router-dom";
+import { useNavigate, NavLink, useLocation } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
@@ -25,11 +25,11 @@ const NavbarWeb = () => {
   const [username, setUsername] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [allFoods, setAllFoods] = useState([]);
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [showNotif, setShowNotif] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Hàm chuẩn hóa chuỗi (bỏ dấu, đổi về chữ thường)
   const normalizeString = (str) => {
@@ -55,15 +55,6 @@ const NavbarWeb = () => {
     }
   }, []);
 
-  // Fetch all foods
-  useEffect(() => {
-    fetch("http://localhost:3001/courses")
-      .then((res) => res.json())
-      .then((data) => {
-        setAllFoods(data);
-      })
-      .catch((err) => console.error("Error fetching foods:", err));
-  }, []);
 
   // Fetch notifications (using orders for the current user) when logged in
   useEffect(() => {
@@ -95,7 +86,7 @@ const NavbarWeb = () => {
   };
 
   return (
-    <header className={`hero-header ${isLoggedIn ? 'logged-in' : ''}`}>
+    <header className={`hero-header ${isLoggedIn && role === 'admin' ? 'logged-in' : ''}`}>
       <nav className="top-nav">
         <Container className="d-flex align-items-center justify-content-between">
           <div className="d-flex align-items-center">
@@ -118,7 +109,7 @@ const NavbarWeb = () => {
                   <NavLink to="/menu" className="nav-link">
                     Khóa học
                   </NavLink>
-                  <NavLink to="/users" className="nav-link">
+                  <NavLink to="/reports" className="nav-link">
                     Báo cáo và thống kê
                   </NavLink>
                 </>
@@ -377,7 +368,7 @@ const NavbarWeb = () => {
         </Container>
       </nav>
 
-      {!isLoggedIn && (
+      {location.pathname === "/home" && (!isLoggedIn || (isLoggedIn && role !== "admin")) && (
         <div className="hero-content">
           <Container>
             <h1 className="hero-title">

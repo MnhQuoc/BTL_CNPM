@@ -145,7 +145,7 @@ const Profile = () => {
     return (
       <div className="admin-profile-layout">
         <aside className="admin-sidebar">
-          <div className="admin-sidebar-title">Users</div>
+          <div className="admin-sidebar-title">Admin</div>
           <nav className="admin-sidebar-menu">
             <button
               type="button"
