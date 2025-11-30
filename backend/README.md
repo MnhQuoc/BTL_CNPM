@@ -1,6 +1,6 @@
-# Backend API - Trưa Nay Ăn Gì
+# Backend API 
 
-Đây là API backend cho dự án "Trưa Nay Ăn Gì" sử dụng json-server để mô phỏng REST API.
+Đây là API backend cho BTL CNPM sử dụng json-server để mô phỏng REST API.
 
 ## Giới thiệu
 

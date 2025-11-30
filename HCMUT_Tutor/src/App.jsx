@@ -30,6 +30,7 @@ import Cart from './pages/Cart/Cart.jsx';
 import MySessions from './pages/MySessions/MySessions.jsx';
 import FindTutor from './pages/FindTutor/FindTutor.jsx';
 import OpenCourse from './pages/OpenCourse/OpenCourse.jsx';
+import Reports from './pages/Reports/Reports.jsx';
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -116,6 +117,7 @@ function App() {
             <Route path="my-sessions" element={<MySessions />} />
             <Route path="find-tutor" element={<FindTutor />} />
             <Route path="open-course" element={<OpenCourse />} />
+            <Route path="reports" element={<Reports />} />
           </Route>
         </Routes>
       </CartProvider>

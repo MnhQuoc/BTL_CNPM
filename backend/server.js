@@ -7,6 +7,43 @@ const middlewares = jsonServer.defaults();
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 
+// ✅ Middleware kiểm tra email unique khi tạo/cập nhật user
+server.use('/users', (req, res, next) => {
+  if (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH') {
+    const db = router.db;
+    const userData = req.body;
+    const email = userData.email;
+
+    if (email) {
+      // Lấy userId từ URL nếu là PUT/PATCH
+      let currentUserId = null;
+      if (req.method === 'PUT' || req.method === 'PATCH') {
+        const urlPath = req.url.split('?')[0];
+        const urlParts = urlPath.split('/').filter(part => part);
+        if (urlParts.length > 0 && urlParts[urlParts.length - 1] !== 'users') {
+          currentUserId = urlParts[urlParts.length - 1];
+        }
+      }
+
+      // Kiểm tra email đã tồn tại chưa (trừ user hiện tại nếu đang cập nhật)
+      const existingUser = db.get('users')
+        .find(u => {
+          if (!u.email) return false;
+          if (currentUserId && String(u.id) === String(currentUserId)) return false;
+          return u.email.toLowerCase() === email.toLowerCase();
+        })
+        .value();
+
+      if (existingUser) {
+        return res.status(400).json({
+          error: 'Email đã được sử dụng. Vui lòng sử dụng email khác.'
+        });
+      }
+    }
+  }
+  next();
+});
+
 // ✅ Route xác minh email
 server.get('/verify/:id', (req, res) => {
   const id = req.params.id;

@@ -1,4 +1,4 @@
-# Dự án trưa nay ăn gì
+# BTL CNPM
 
 - Khách hàng: HCMUT
 - Mentor: 

@@ -131,19 +131,37 @@ function Register() {
 
     try {
       // Kiểm tra username đã tồn tại
-      const res = await axios.get(
+      const usernameRes = await axios.get(
         `http://localhost:3001/users?username=${form.username}`
       );
-      console.log('API response:', res.data);
+      console.log('API response:', usernameRes.data);
 
-      if (!Array.isArray(res.data)) {
+      if (!Array.isArray(usernameRes.data)) {
         throw new Error('API không trả về mảng dữ liệu');
       }
 
-      if (res.data.some((user) => user.username === form.username)) {
+      if (usernameRes.data.some((user) => user.username === form.username)) {
         setMessage('Tên đăng nhập đã tồn tại. Vui lòng chọn tên khác.');
         setLoading(false);
         return;
+      }
+
+      // Kiểm tra email đã tồn tại
+      const emailRes = await axios.get(
+        `http://localhost:3001/users?email=${encodeURIComponent(form.email)}`
+      );
+
+      if (Array.isArray(emailRes.data) && emailRes.data.length > 0) {
+        // Kiểm tra case-insensitive
+        const emailExists = emailRes.data.some(
+          (user) => user.email && user.email.toLowerCase() === form.email.toLowerCase()
+        );
+        
+        if (emailExists) {
+          setMessage('Email đã được sử dụng. Vui lòng sử dụng email khác.');
+          setLoading(false);
+          return;
+        }
       }
 
       const newUserId = Date.now();

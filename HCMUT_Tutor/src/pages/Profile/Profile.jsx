@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router';
+import './Profile.css';
 
 const Profile = () => {
   const [userData, setUserData] = useState({
@@ -11,6 +12,10 @@ const Profile = () => {
   });
   const [message, setMessage] = useState('');
   const [userRole, setUserRole] = useState('');
+  const [adminTab, setAdminTab] = useState('student');
+  const [adminUsers, setAdminUsers] = useState([]);
+  const [adminLoading, setAdminLoading] = useState(false);
+  const [adminError, setAdminError] = useState('');
   const navigate = useNavigate();
 
   // Kiểm tra xem thông tin có được điền đầy đủ không
@@ -58,6 +63,29 @@ const Profile = () => {
     fetchUserData();
   }, [navigate]);
 
+  useEffect(() => {
+    if (userRole !== 'admin') return;
+    const fetchAllUsers = async () => {
+      try {
+        setAdminLoading(true);
+        setAdminError('');
+        const response = await fetch('http://localhost:3001/users');
+        if (!response.ok) {
+          throw new Error('Failed to fetch users');
+        }
+        const data = await response.json();
+        setAdminUsers(Array.isArray(data) ? data : []);
+      } catch (error) {
+        console.error('Error fetching all users:', error);
+        setAdminError('Không thể tải danh sách người dùng');
+      } finally {
+        setAdminLoading(false);
+      }
+    };
+
+    fetchAllUsers();
+  }, [userRole]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData(prev => ({
@@ -102,6 +130,96 @@ const Profile = () => {
       setMessage('Có lỗi xảy ra khi cập nhật thông tin');
     }
   };
+
+  const filteredAdminUsers = useMemo(() => {
+    if (adminTab === 'student') {
+      return adminUsers.filter((user) => user.role === 'user');
+    }
+    if (adminTab === 'tutor') {
+      return adminUsers.filter((user) => user.role === 'tutor');
+    }
+    return adminUsers;
+  }, [adminTab, adminUsers]);
+
+  if (userRole === 'admin') {
+    return (
+      <div className="admin-profile-layout">
+        <aside className="admin-sidebar">
+          <div className="admin-sidebar-title">Admin</div>
+          <nav className="admin-sidebar-menu">
+            <button
+              type="button"
+              className={`admin-nav-item ${adminTab === 'student' ? 'active' : ''}`}
+              onClick={() => setAdminTab('student')}
+            >
+              Student
+            </button>
+            <button
+              type="button"
+              className={`admin-nav-item ${adminTab === 'tutor' ? 'active' : ''}`}
+              onClick={() => setAdminTab('tutor')}
+            >
+              Tutor
+            </button>
+          </nav>
+        </aside>
+
+        <section className="admin-content">
+          <header className="admin-content-header">
+            <div>
+              <h2>Danh sách {adminTab === 'student' ? 'học viên' : 'gia sư'}</h2>
+              <p className="admin-content-subtitle">
+                Theo dõi nhanh thông tin cơ bản của từng tài khoản.
+              </p>
+            </div>
+          </header>
+
+          <div className="admin-table-card">
+            {adminLoading && <div className="admin-state">Đang tải dữ liệu...</div>}
+            {!adminLoading && adminError && (
+              <div className="admin-state admin-state-error">{adminError}</div>
+            )}
+            {!adminLoading && !adminError && filteredAdminUsers.length === 0 && (
+              <div className="admin-state">Chưa có dữ liệu để hiển thị</div>
+            )}
+            {!adminLoading && !adminError && filteredAdminUsers.length > 0 && (
+              <div className="admin-table-wrapper">
+                <table className="admin-table">
+                  <thead>
+                    <tr>
+                      <th>STT</th>
+                      <th>Họ và tên</th>
+                      <th>Năm sinh</th>
+                      <th>SĐT</th>
+                      <th>Email</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredAdminUsers.map((user, index) => {
+                      const displayName = user.fullName || user.name || user.username || '—';
+                      const birthYear =
+                        user.birthYear || user.yearOfBirth || user.dobYear || '—';
+                      const phone = user.phone || '—';
+                      const email = user.email || '—';
+                      return (
+                        <tr key={user.id || index}>
+                          <td>{index + 1}</td>
+                          <td>{displayName}</td>
+                          <td>{birthYear}</td>
+                          <td>{phone}</td>
+                          <td>{email}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   return (
     <div className="container py-5">
